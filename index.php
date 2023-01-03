@@ -51,6 +51,10 @@ session_start(
       <input name="transferCode" type="text">
       <label for="totalcost">totalcost</label>
       <input name="totalcost" type="number">
+      <label for="start date">start date</label>
+      <input name="start date" type="date">
+      <label for="end date">end date</label>
+      <input name="end date" type="date">
       <input type="submit">
     </form>
 
@@ -67,6 +71,7 @@ session_start(
       <input type="submit">
     </form>
   </section>
+
 </body>
 
 </html>

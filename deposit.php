@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 session_start(
-    [
-        'cookie_lifetime' => 240,
-    ]
+  [
+    'cookie_lifetime' => 240,
+  ]
 );
 
 use GuzzleHttp\Client;
@@ -25,28 +25,29 @@ $_SESSION['username']; // should be my username so that i receive the money */
 } */
 
 $client = new Client([
-    'base_uri' => $url,
+  'base_uri' => $url,
 ]);
 
 $res = $client->request('POST', $url_deposit, [
-    'form_params' => [
-        'user' => 'adam',
-        'transferCode' => $_SESSION['transferCode'],
-    ],
+  'form_params' => [
+    'user' => 'adam',
+    'transferCode' => $_SESSION['transferCode'],
+  ],
 ]);
 
 $data = json_decode($res->getBody()->getContents(), true);
 header('application/json');
 var_dump(json_encode($data));
 if (isset($data['error'])) {
-    $error = $data['error'];
+  $error = $data['error'];
 }
 if (isset($data['message'])) {
-    $message = $data['message'];
+  $message = $data['message'];
 }
 
 if ($res->getStatusCode() == 200 && !isset($error)) {
-    echo "Deposit successful";
+  echo "Deposit successful";
+  header('Location: booking.php');
 } else {
-    echo "Deposit failed";
+  echo "Deposit failed";
 }
