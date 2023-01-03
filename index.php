@@ -72,6 +72,29 @@ session_start(
     </form>
   </section>
 
+  <section>
+    <h1>luxury</h1>
+    <form action="postTransferCode.php" method="post">
+      <label for="username">username</label>
+      <input name="username" type="text">
+      <label for="transferCode">transferCode</label>
+      <input name="transferCode" type="text">
+      <label for="totalcost">totalcost</label>
+      <input name="totalcost" type="number">
+      <label for="start date">start date</label>
+      <input name="start date" type="date">
+      <label for="end date">end date</label>
+      <input name="end date" type="date">
+      <label for="butler">butler</label>
+      <input name="butler" type="checkbox">
+      <label for="massage">massage</label>
+      <input name="massage" type="checkbox">
+      <label for="breakfast">breakfast</label>
+      <input name="breakfast" type="checkbox">
+      <?php $_SESSION['room_type'] = 'luxury'; ?>
+      <input type="submit">
+  </section>
+
 </body>
 
 </html>

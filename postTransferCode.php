@@ -13,6 +13,10 @@ $_SESSION['totalcost'] = $_POST['totalcost'];
 $_SESSION['start_date'] = $_POST['start_date'];
 $_SESSION['end_date'] = $_POST['end_date'];
 
+$_SESSION['butler'] = $_POST['butler'];
+$_SESSION['massage'] = $_POST['massage'];
+$_SESSION['breakfast'] = $_POST['breakfast'];
+
 
 use GuzzleHttp\Client;
 
