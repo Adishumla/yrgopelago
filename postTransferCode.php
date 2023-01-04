@@ -18,8 +18,8 @@ include_once __DIR__ . '/vendor/autoload.php';
 $url = 'https://www.yrgopelago.se/';
 $url_withdraw = 'https://www.yrgopelago.se/centralbank/transferCode';
 
-$transferCode = $_POST['transferCode'];
-$totalcost = $_POST['totalcost'];
+$transferCode = $_SESSION['transferCode'];
+$totalcost = $_SESSION['totalcost'];
 
 $client = new Client([
   'base_uri' => $url,

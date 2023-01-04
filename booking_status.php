@@ -11,10 +11,8 @@ getDates($db, $room_type);
 
 $_SESSION['start_date'] = $_POST['start_date'];
 $_SESSION['end_date'] = $_POST['end_date'];
-$_SESSION['butler'] = $_POST['butler'];
-$_SESSION['breakfast'] = $_POST['breakfast'];
-$_SESSION['massage'] = $_POST['massage'];
 $_SESSION['username'] = $_POST['username'];
+$_SESSION['transferCode'] = $_POST['transferCode'];
 
 function checkbox($checkbox)
 {
@@ -54,28 +52,27 @@ foreach ($prices as $key => $value) {
     $price = $value;
   }
 }
-$_SESSION['totalcost'] = $value;
+
 
 
 echo '<br>';
 $total_cost = ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1) * $price;
-$_SESSION['total_cost'] = $total_cost;
+$_SESSION['totalcost'] = $total_cost;
 //add the 2 for every checkbox that is checked
 if (isset($_POST['breakfast'])) {
-  $_SESSION['total_cost'] += 2;
+  $_SESSION['totalcost'] += 2;
 }
 if (isset($_POST['massage'])) {
-  $_SESSION['total_cost'] += 2;
+  $_SESSION['totalcost'] += 2;
 }
 if (isset($_POST['butler'])) {
-  $_SESSION['total_cost'] += 2;
+  $_SESSION['totalcost'] += 2;
 }
 // if the user booked 5 or more days, give a 10% discount
 if ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1 >= 5) {
-  $_SESSION['total_cost'] = $_SESSION['total_cost'] * 0.9;
+  $_SESSION['totalcost'] = $_SESSION['totalcost'] * 0.9;
 }
-echo $_SESSION['total_cost'];
-
+echo $_SESSION['totalcost'];
 // check if start_date is less than end_date
 if (strtotime($_SESSION['start_date']) > strtotime($_SESSION['end_date'])) {
   $_SESSION['error'] = 'The start date must be before the end date';
