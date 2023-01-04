@@ -10,8 +10,7 @@ session_start(
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['transferCode'] = $_POST['transferCode'];
 $_SESSION['totalcost'] = $_POST['totalcost'];
-$_SESSION['start_date'] = $_POST['start_date'];
-$_SESSION['end_date'] = $_POST['end_date'];
+
 
 // if checkbox is checked, set session variable to true else false, as a function of isset
 
