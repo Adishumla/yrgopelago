@@ -42,20 +42,19 @@ session_start(
 </style>
 
 <body>
-
   <section>
-    <h1>luxury</h1>
-    <form action="postTransferCode.php" method="post">
+    <h1 id="room_type">luxury</h1>
+    <form action="booking_status.php" method="post">
       <label for="username">username</label>
       <input name="username" type="text">
       <label for="transferCode">transferCode</label>
       <input name="transferCode" type="text">
       <label for="totalcost">totalcost</label>
-      <input name="totalcost" type="number">
+      <p id="cost"></p>
       <label for="start date">start date</label>
-      <input name="start date" type="date">
-      <label for="end date">end date</label>
-      <input name="end date" type="date">
+      <input name="start date" type="date" min="2023-01-01" max="2023-01-31">
+      <label for=" end date">end date</label>
+      <input name="end date" type="date" min="2023-01-01" max="2023-01-31">
       <label for="butler">butler</label>
       <input name="butler" type="checkbox">
       <label for="massage">massage</label>
@@ -64,10 +63,13 @@ session_start(
       <input name="breakfast" type="checkbox">
       <?php $_SESSION['room_type'] = 'luxury'; ?>
       <input type="submit">
+    </form>
+    <script src="display_cost.js"></script>
   </section>
-  <section>
-    <!--calendar that displays the days of january that are booked from the -->
-  </section>
+
+  <?php
+  include_once 'calander.php';
+  ?>
 </body>
 
 </html>
