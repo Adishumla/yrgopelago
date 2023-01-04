@@ -65,6 +65,9 @@ session_start(
       <?php $_SESSION['room_type'] = 'luxury'; ?>
       <input type="submit">
   </section>
+  <section>
+    <!--calendar that displays the days of january that are booked from the -->
+  </section>
 </body>
 
 </html>
