@@ -7,25 +7,9 @@ session_start(
   ]
 );
 
-$_SESSION['username'] = $_POST['username'];
-$_SESSION['transferCode'] = $_POST['transferCode'];
-$_SESSION['totalcost'] = $_POST['totalcost'];
-
 
 // if checkbox is checked, set session variable to true else false, as a function of isset
 
-function checkbox($checkbox)
-{
-  if (isset($_POST[$checkbox])) {
-    $_SESSION[$checkbox] = 1;
-  } else {
-    $_SESSION[$checkbox] = 0;
-  }
-}
-
-checkbox('breakfast');
-checkbox('butler');
-checkbox('massage');
 
 use GuzzleHttp\Client;
 

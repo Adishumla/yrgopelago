@@ -11,6 +11,23 @@ getDates($db, $room_type);
 
 $_SESSION['start_date'] = $_POST['start_date'];
 $_SESSION['end_date'] = $_POST['end_date'];
+$_SESSION['butler'] = $_POST['butler'];
+$_SESSION['breakfast'] = $_POST['breakfast'];
+$_SESSION['massage'] = $_POST['massage'];
+$_SESSION['username'] = $_POST['username'];
+
+function checkbox($checkbox)
+{
+  if (isset($_POST[$checkbox])) {
+    $_SESSION[$checkbox] = 1;
+  } else {
+    $_SESSION[$checkbox] = 0;
+  }
+}
+
+checkbox('breakfast');
+checkbox('butler');
+checkbox('massage');
 
 $start_dates = getDates($db, $room_type)[0];
 $end_dates = getDates($db, $room_type)[1];
@@ -37,6 +54,7 @@ foreach ($prices as $key => $value) {
     $price = $value;
   }
 }
+$_SESSION['totalcost'] = $value;
 
 
 echo '<br>';
@@ -70,4 +88,5 @@ if (in_array($_SESSION['start_date'], $booked_days) || in_array($_SESSION['end_d
   header('Location:' . $_SESSION['room_type'] . '.php');
 } else {
   echo 'this room is available';
+  header('Location: postTransferCode.php');
 }
