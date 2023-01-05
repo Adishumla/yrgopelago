@@ -1,0 +1,44 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+  font-family: sans-serif;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+label {
+  font-size: 20px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.submit-button {
+  background-color: rgb(36, 160, 237);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

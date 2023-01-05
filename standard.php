@@ -13,9 +13,10 @@ session_start(
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/form.css">
   <title>form</title>
 </head>
-<style>
+<!-- <style>
   body {
     height: 100vh;
     display: flex;
@@ -39,7 +40,7 @@ session_start(
   input {
     margin: 10px;
   }
-</style>
+</style> -->
 
 <body>
   <section>
@@ -62,7 +63,7 @@ session_start(
       <label for="breakfast">breakfast</label>
       <input name="breakfast" type="checkbox">
       <?php $_SESSION['room_type'] = 'standard'; ?>
-      <input type="submit">
+      <input class="submit-button" type="submit">
     </form>
     <script src="display_cost.js"></script>
   </section>

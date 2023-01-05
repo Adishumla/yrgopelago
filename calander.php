@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/calander.css">
 <?php
 include 'functions.php';
 $room_type = $_SESSION['room_type'];
@@ -33,16 +34,30 @@ for ($i = 1; $i <= 31; $i++) {
   }
 }
 
-// color the days that are booked in red
 echo '<div>';
 echo '<h1>january</h1>';
+echo '<table>';
+/* echo '<tr>';
+echo '<th>mon</th>';
+echo '<th>tue</th>';
+echo '<th>wed</th>';
+echo '<th>thu</th>';
+echo '<th>fri</th>';
+echo '<th>sat</th>';
+echo '<th>sun</th>';
+echo '</tr>'; */
+echo '<tr>';
 for ($i = 0; $i < count($january); $i++) {
   if (in_array($january[$i], $booked_days)) {
-    echo '<span style="color:red">' . $january[$i] . '</span>';
-    echo '<br>';
+    echo '<td style="color:red">' . substr($january[$i], 8) . '</td>';
   } else {
-    echo $january[$i];
-    echo '<br>';
+    echo '<td>' . substr($january[$i], 8) . '</td>';
+  }
+  if ($i % 7 == 6) {
+    echo '</tr>';
+    echo '<tr>';
   }
 }
+echo '</tr>';
+echo '</table>';
 echo '</div>';
