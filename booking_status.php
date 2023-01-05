@@ -86,4 +86,5 @@ if (in_array($_SESSION['start_date'], $booked_days) || in_array($_SESSION['end_d
 } else {
   echo 'this room is available';
   header('Location: postTransferCode.php');
+  echo '<script>window.location.href = "postTransferCode.php";</script>';
 }

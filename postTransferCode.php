@@ -41,6 +41,7 @@ if (isset($data['error'])) {
 if ($res->getStatusCode() == 200 && !isset($error) && $amount >= $totalcost) {
   echo "Transfer successful";
   header('Location: deposit.php');
+  echo '<script>window.location.href = "deposit.php";</script>';
 } else {
   echo "Transfer failed";
 }

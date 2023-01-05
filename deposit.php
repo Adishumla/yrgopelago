@@ -48,6 +48,7 @@ if (isset($data['message'])) {
 if ($res->getStatusCode() == 200 && !isset($error)) {
   echo "Deposit successful";
   header('Location: booking.php');
+  echo '<script>window.location.href = "booking.php";</script>';
 } else {
   echo "Deposit failed";
 }
