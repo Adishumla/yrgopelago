@@ -1,7 +1,7 @@
 <?php
 session_start(
   [
-    'cookie_lifetime' => 240,
+    'cookie_lifetime' => 360,
   ]
 );
 
@@ -72,7 +72,6 @@ if (isset($_POST['butler'])) {
 if ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1 >= 5) {
   $_SESSION['totalcost'] = $_SESSION['totalcost'] * 0.9;
 }
-echo $_SESSION['totalcost'];
 // check if start_date is less than end_date
 if (strtotime($_SESSION['start_date']) > strtotime($_SESSION['end_date'])) {
   $_SESSION['error'] = 'The start date must be before the end date';
@@ -82,9 +81,9 @@ if (strtotime($_SESSION['start_date']) > strtotime($_SESSION['end_date'])) {
 // check if user is trying to book a booked day and if so, show an error message from $_Session['start_date'] and $_Session['end_date']
 if (in_array($_SESSION['start_date'], $booked_days) || in_array($_SESSION['end_date'], $booked_days)) {
   $_SESSION['error'] = 'The room is not available for the selected dates';
-  header('Location:' . $_SESSION['room_type'] . '.php');
+  echo '<script> setTimeout(function(){window.location.href = "' . $_SESSION['room_type'] . '.php";}, 3000);</script>';
 } else {
-  echo 'this room is available';
-  header('Location: postTransferCode.php');
-  echo '<script>window.location.href = "postTransferCode.php";</script>';
+  /* echo 'this room is available';
+  echo '<script> setTimeout(function(){window.location.href = "postTransferCode.php";}, 5000);</script>'; */
+  require_once 'postTransferCode.php';
 }

@@ -1,11 +1,11 @@
 <?php
 
 declare(strict_types=1);
-session_start(
+/* session_start(
   [
     'cookie_lifetime' => 240,
   ]
-);
+); */
 
 use GuzzleHttp\Client;
 
@@ -36,8 +36,8 @@ $res = $client->request('POST', $url_deposit, [
 ]);
 
 $data = json_decode($res->getBody()->getContents(), true);
-header('application/json');
-var_dump(json_encode($data));
+/* header('application/json');
+var_dump(json_encode($data)); */
 if (isset($data['error'])) {
   $error = $data['error'];
 }
@@ -46,9 +46,9 @@ if (isset($data['message'])) {
 }
 
 if ($res->getStatusCode() == 200 && !isset($error)) {
-  echo "Deposit successful";
-  header('Location: booking.php');
-  echo '<script>window.location.href = "booking.php";</script>';
+  /* echo "Deposit successful"; */
+  /* echo '<script> setTimeout(function(){window.location.href = "booking.php";}, 5000);</script>'; */
+  require_once 'booking.php';
 } else {
   echo "Deposit failed";
 }

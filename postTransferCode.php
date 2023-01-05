@@ -1,11 +1,11 @@
 <?php
 
 declare(strict_types=1);
-session_start(
+/* session_start(
   [
     'cookie_lifetime' => 120,
   ]
-);
+); */
 
 
 // if checkbox is checked, set session variable to true else false, as a function of isset
@@ -39,9 +39,9 @@ if (isset($data['error'])) {
   $error = $data['error'];
 }
 if ($res->getStatusCode() == 200 && !isset($error) && $amount >= $totalcost) {
-  echo "Transfer successful";
-  header('Location: deposit.php');
-  echo '<script>window.location.href = "deposit.php";</script>';
+  /* echo "Transfer successful"; */
+  /* echo '<script> setTimeout(function(){window.location.href = "deposit.php";}, 5000);</script>'; */
+  require_once 'deposit.php';
 } else {
   echo "Transfer failed";
 }
