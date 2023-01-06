@@ -106,6 +106,11 @@ session_start(
       <button>budget</button>
     </a>
   </section>
+  <form action="admin.php" method="post">
+    <label for="api_key">api_key</label>
+    <input name="api_key" type="text">
+    <input type="submit">
+  </form>
 
 </body>
 

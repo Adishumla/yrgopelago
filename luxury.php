@@ -44,7 +44,7 @@ session_start(
 <body>
   <section>
     <h1 id="room_type">luxury</h1>
-    <form action="booking_status.php" method="post">
+    <form action="session_variable_form.php" method="post">
       <label for="username">username</label>
       <input name="username" type="text">
       <label for="transferCode">transferCode</label>

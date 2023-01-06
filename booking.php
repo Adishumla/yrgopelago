@@ -10,7 +10,7 @@ use function PHPSTORM_META\type;
 
 
 //get data from database
-$db = new PDO('sqlite:database/identifier.sqlite');
+$db = new PDO('sqlite:' . __DIR__ . '/database/identifier.sqlite');
 // get last id from database table $_SESSION['room_type']
 $last_feature_id = $db->query("SELECT id FROM feature ORDER BY id DESC LIMIT 1")->fetchColumn();
 $last_room_id = $db->query("SELECT id FROM $_SESSION[room_type] ORDER BY id DESC LIMIT 1")->fetchColumn();

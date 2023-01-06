@@ -17,7 +17,6 @@ include_once __DIR__ . '/vendor/autoload.php';
 
 $url = 'https://www.yrgopelago.se/';
 $url_withdraw = 'https://www.yrgopelago.se/centralbank/transferCode';
-
 $transferCode = $_SESSION['transferCode'];
 $totalcost = $_SESSION['totalcost'];
 
@@ -37,7 +36,14 @@ if (isset($data['amount'])) {
 }
 if (isset($data['error'])) {
   $error = $data['error'];
+} else {
+  $error = null;
 }
+/* var_dump($error);
+var_dump($error);
+var_dump($amount);
+var_dump($totalcost);
+echo $res->getStatusCode(); */
 if ($res->getStatusCode() == 200 && !isset($error) && $amount >= $totalcost) {
   /* echo "Transfer successful"; */
   /* echo '<script> setTimeout(function(){window.location.href = "deposit.php";}, 5000);</script>'; */
