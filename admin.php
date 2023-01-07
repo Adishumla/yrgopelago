@@ -4,9 +4,24 @@ declare(strict_types=1);
 
 session_start(
   [
-    'cookie_lifetime' => 360,
+    'cookie_lifetime' => 1360,
   ]
 );
+
+//function that that takes session variable and include calander.php
+function include_calander()
+{
+  if (isset($_SESSION['transferCode'])) {
+    include __DIR__ . '/calander.php';
+  }
+}
+function getCalander($room_type)
+{
+  $_SESSION['room_type'] = $room_type;
+  include __DIR__ . '/calander.php';
+}
+
+
 
 use Dotenv\Dotenv;
 
@@ -26,7 +41,7 @@ if (isset($_POST['api_key'])) {
 }
 
 // get all luxury table data from database
-$db = new PDO('sqlite:database/identifier.sqlite');
+$db = new PDO('sqlite:' . __DIR__ . '/database/identifier.sqlite');
 //fetch all id from luxury table
 $luxury_id = $db->query("SELECT id FROM luxury")->fetchAll(PDO::FETCH_COLUMN);
 $luxury_name = $db->query("SELECT name FROM luxury")->fetchAll(PDO::FETCH_COLUMN);
@@ -34,24 +49,31 @@ $luxury_start_date = $db->query("SELECT start_date FROM luxury")->fetchAll(PDO::
 $luxury_end_date = $db->query("SELECT end_date FROM luxury")->fetchAll(PDO::FETCH_COLUMN);
 $luxury_feature_id = $db->query("SELECT feature_id FROM luxury")->fetchAll(PDO::FETCH_COLUMN);
 
-// function that can save id, name, start_date, end_date and feature_id in an array from the database that can be used in all the tables
-function getTableData($db, $room_type)
+// function to get data from prices table (name, price, discount)
+function getPrices($db, $room_type)
 {
-  //fetch all id from $room_type table
-  $id = $db->query("SELECT id FROM $room_type")->fetchAll(PDO::FETCH_COLUMN);
-  //fetch all name from $room_type table
-  $name = $db->query("SELECT name FROM $room_type")->fetchAll(PDO::FETCH_COLUMN);
-  //fetch all start_date from $room_type table
-  $start_date = $db->query("SELECT start_date FROM $room_type")->fetchAll(PDO::FETCH_COLUMN);
-  //fetch all end_date from $room_type table
-  $end_date = $db->query("SELECT end_date FROM $room_type")->fetchAll(PDO::FETCH_COLUMN);
-  //fetch all feature_id from $room_type table
-  $feature_id = $db->query("SELECT feature_id FROM $room_type")->fetchAll(PDO::FETCH_COLUMN);
-  return [$id, $name, $start_date, $end_date, $feature_id];
+  $prices = $db->query("SELECT name, price, discount FROM $room_type")->fetchAll(PDO::FETCH_ASSOC);
+  return $prices;
 }
 
-$standard = getTableData($db, 'standard');
-$budget = getTableData($db, 'budget');
-$luxury = getTableData($db, 'luxury');
+// get all prices from database
+$prices = getPrices($db, 'prices');
+/* echo '<pre>';
+print_r($prices);
+echo '</pre>';
+ */
+// input form for each room type (name, price, discount) that send query to database to update prices table
+foreach ($prices as $price) {
+  echo '<form action="admin.php" method="post">';
+  echo '<input type="text" name="name" value="' . $price['name'] . '">';
+  echo '<input type="number" name="price" value="' . $price['price'] . '">';
+  echo '<input type="number" name="discount" value="' . $price['discount'] . '">';
+  echo '<input type="submit" name="submit" value="Update">';
+  echo '</form>';
+}
 
-// get price from env fille and save it so it can be cha
+// update prices table
+if (isset($_POST['submit'])) {
+  $db->query("UPDATE prices SET name = '$_POST[name]', price = '$_POST[price]', discount = '$_POST[discount]' WHERE name = '$_POST[name]'");
+  echo '<script>window.location.href = "admin.php";</script>';
+}

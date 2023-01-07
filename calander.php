@@ -23,10 +23,8 @@ for ($i = 0; $i < count($start_dates); $i++) {
     $booked_days[] = $j;
   }
 }
-// save every day of january in an array 2023-01-01 to 2023-01-31 (01 to 31)
 $january = array();
 for ($i = 1; $i <= 31; $i++) {
-  // add a 0 to the days that are less than 10
   if ($i < 10) {
     $january[] = '2023-01-0' . $i;
   } else {
