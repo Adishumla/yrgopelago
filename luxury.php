@@ -64,10 +64,11 @@ session_start(
       <?php $_SESSION['room_type'] = 'luxury'; ?>
       <input type="submit">
     </form>
-    <script src="display_cost.js"></script>
+    <!-- <script src="display_cost.js"></script> -->
   </section>
 
   <?php
+  include 'display_cost.php';
   include_once 'calander.php';
   ?>
 </body>

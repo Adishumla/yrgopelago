@@ -44,8 +44,7 @@ session_start(
 <body>
   <section>
     <h1 id="room_type">budget</h1>
-    <h3>book 5 or more days and get a 10% discount</h3>
-    <form action="booking_status.php" method="post">
+    <form action="session_variable_form.php" method="post">
       <label for="username">username</label>
       <input name="username" type="text">
       <label for="transferCode">transferCode</label>
@@ -65,10 +64,11 @@ session_start(
       <?php $_SESSION['room_type'] = 'budget'; ?>
       <input type="submit">
     </form>
-    <script src="display_cost.js"></script>
+    <!-- <script src="display_cost.js"></script> -->
   </section>
 
   <?php
+  include 'display_cost.php';
   include_once 'calander.php';
   ?>
 </body>

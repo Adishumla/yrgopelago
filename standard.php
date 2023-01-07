@@ -13,10 +13,9 @@ session_start(
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/form.css">
   <title>form</title>
 </head>
-<!-- <style>
+<style>
   body {
     height: 100vh;
     display: flex;
@@ -40,12 +39,12 @@ session_start(
   input {
     margin: 10px;
   }
-</style> -->
+</style>
 
 <body>
   <section>
     <h1 id="room_type">standard</h1>
-    <form action="booking_status.php" method="post">
+    <form action="session_variable_form.php" method="post">
       <label for="username">username</label>
       <input name="username" type="text">
       <label for="transferCode">transferCode</label>
@@ -63,12 +62,13 @@ session_start(
       <label for="breakfast">breakfast</label>
       <input name="breakfast" type="checkbox">
       <?php $_SESSION['room_type'] = 'standard'; ?>
-      <input class="submit-button" type="submit">
+      <input type="submit">
     </form>
-    <script src="display_cost.js"></script>
+    <!-- <script src="display_cost.js"></script> -->
   </section>
 
   <?php
+  include 'display_cost.php';
   include_once 'calander.php';
   ?>
 </body>

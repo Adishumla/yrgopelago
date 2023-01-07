@@ -24,9 +24,9 @@ $_SESSION['booked_days'] = $booked_days;
 
 // array of room_types and their prices
 $prices = [
-  'standard' => 2,
-  'budget' => 1,
-  'luxury' => 3,
+  'standard' => $db->query('SELECT price FROM prices WHERE name = "standard"')->fetchColumn(),
+  'budget' => $db->query('SELECT price FROM prices WHERE name = "budget"')->fetchColumn(),
+  'luxury' => $db->query('SELECT price FROM prices WHERE name = "luxury"')->fetchColumn(),
 ];
 
 // compare the room_type with the prices array and save the price in a variable
