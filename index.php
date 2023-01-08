@@ -13,9 +13,10 @@ session_start(
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/index.css">
   <title>form</title>
 </head>
-<style>
+<!-- <style>
   body {
     height: 100vh;
     display: flex;
@@ -39,79 +40,54 @@ session_start(
   input {
     margin: 10px;
   }
-</style>
+</style> -->
 
 <body>
-  <!--  <section>
-    <h1>Transfer</h1>
-    <form action="postTransferCode.php" method="post">
-      <label for="username">username</label>
-      <input name="username" type="text">
-      <label for="transferCode">transferCode</label>
-      <input name="transferCode" type="text">
-      <label for="totalcost">totalcost</label>
-      <input name="totalcost" type="number">
-      <label for="start date">start date</label>
-      <input name="start date" type="date">
-      <label for="end date">end date</label>
-      <input name="end date" type="date">
-      <input type="submit">
-    </form>
-
+  <section class="hero">
+    <img src="images/baloon.jpg" alt="">
+    <div class="hero-text">
+      <h1>Welcome to Serendipity Island</h1>
+    </div>
   </section>
-  <section>
-    <h1>Deposit</h1>
-    <form action="withdraw.php" method="post">
-      <label for="username">username</label>
-      <input name="username" type="username">
-      <label for="api_key">api_key</label>
-      <input name="api_key" type="text">
-      <label for="amount">amount</label>
-      <input name="amount" type="number">
-      <input type="submit">
-    </form>
-  </section>
-
-  <section>
-    <h1>luxury</h1>
-    <form action="postTransferCode.php" method="post">
-      <label for="username">username</label>
-      <input name="username" type="text">
-      <label for="transferCode">transferCode</label>
-      <input name="transferCode" type="text">
-      <label for="totalcost">totalcost</label>
-      <input name="totalcost" type="number">
-      <label for="start date">start date</label>
-      <input name="start date" type="date">
-      <label for="end date">end date</label>
-      <input name="end date" type="date">
-      <label for="butler">butler</label>
-      <input name="butler" type="checkbox">
-      <label for="massage">massage</label>
-      <input name="massage" type="checkbox">
-      <label for="breakfast">breakfast</label>
-      <input name="breakfast" type="checkbox">
-      <?php $_SESSION['room_type'] = 'luxury'; ?>
-      <input type="submit">
-  </section> -->
-
-  <section>
-    <a href="luxury.php">
-      <button>luxury</button>
-    </a>
-    <a href="standard.php">
-      <button>standard</button>
-    </a>
-    <a href="budget.php">
-      <button>budget</button>
-    </a>
+  <section class="room-select-section">
+    <h2>Our rooms</h2>
+    <div class="room-select">
+      <div class="room-card">
+        <img src="images/standard-room.jpg" alt="">
+        <h3>luxury</h3>
+        <p>This is the room for you if you want to live in luxury.</p>
+        <p>price: 5 SEK</p>
+        <a href="luxury.php">
+          <button>luxury</button>
+        </a>
+      </div>
+      <div class="room-card">
+        <img src="images/standard-room.jpg" alt="">
+        <h3>luxury</h3>
+        <p>This is the room for you if you want to live in luxury.</p>
+        <p>price: 5 SEK</p>
+        <a href="standard.php">
+          <button>standard</button>
+        </a>
+      </div>
+      <div class="room-card">
+        <img src="images/standard-room.jpg" alt="">
+        <h3>luxury</h3>
+        <p>This is the room for you if you want to live in luxury.</p>
+        <p>price: 5 SEK</p>
+        <a href="budget.php">
+          <button>budget</button>
+        </a>
+      </div>
+    </div>
   </section>
   <form action="admin.php" method="post">
     <label for="api_key">api_key</label>
     <input name="api_key" type="text">
     <input type="submit">
   </form>
-
+  <script>
+  </script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/calander.css">
 <?php
-include 'functions.php';
+include_once __DIR__ . '/functions.php';
 $room_type = $_SESSION['room_type'];
 getDates($db, $room_type);
 //if session_error is set, echo the error

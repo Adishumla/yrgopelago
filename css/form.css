@@ -1,21 +1,24 @@
 body {
   height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 100px;
-  font-family: sans-serif;
+  width: 100vw;
+  font-family: 'Roboto', sans-serif;
 }
 
-section {
+.form-section {
+  width: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
 form {
   display: flex;
+  width: 100%;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2px;
 }
 
@@ -35,10 +38,64 @@ h1 {
 }
 
 .submit-button {
-  background-color: rgb(36, 160, 237);
-  color: white;
-  padding: 10px;
+  width: 200px;
+  height: 50px;
   border: none;
-  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 0px;
+  margin: 10px;
   cursor: pointer;
+  transition: 0.5s;
+  outline: none;
+  align-self: center;
+}
+
+.submit-button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.checkbox-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-text-input {
+  align-self: center;
+  width: 120px;
+}
+
+.date-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-text-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+}
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+input[type='date'] {
+  width: 120px;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
 }
