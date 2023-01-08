@@ -18,6 +18,9 @@ session_start(
 </head>
 
 <body>
+  <section>
+    <!-- room images -->
+  </section>
   <section class="input-section">
     <section class="form-section">
       <h1 id="room_type">luxury</h1>
