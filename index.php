@@ -44,10 +44,48 @@ session_start(
 
 <body>
   <section class="hero">
-    <img src="images/baloon.jpg" alt="">
+    <img src="images/desktop-hero.jpg" alt="">
     <div class="hero-text">
       <h1>Welcome to Serendipity Island</h1>
     </div>
+  </section>
+  <section class="island-info-section">
+    <h2>What is Serendipity Island?</h2>
+    <div class="island-info-content">
+      <p>Serendipity Island is a small island in the middle of the ocean. It is a very popular tourist destination. The island is famous for the hot air ballon phenomenon that happens every day at 21:00. The hot air ballons are very beautiful and you can see them from the island.</p>
+      <div class="ballon">
+        <!-- <div class="clouds">
+                    <img src="images/cloud1.png" alt="">
+          <img src="images/cloud1.png" alt="">
+        </div> -->
+        <img src="images/hot-airballon.png" alt="">
+        <img src="images/hot-airballon2.png" alt="">
+      </div>
+      <!-- cloud images that are animated -->
+
+    </div>
+  </section>
+  <section class="island-todo">
+    <h2>What to do on the island</h2>
+    <div class="island-todo-cards">
+      <div class="island-todo-card">
+        <img src="images/baloon.jpg" alt="">
+        <h3>Activities</h3>
+        <p>There are many activities to do on the island. You can go on a boat trip, go to the spa or go to the gym.</p>
+      </div>
+      <div class="island-todo-card">
+        <img src="images/maldives.jpg" alt="">
+        <h3>Food</h3>
+        <p>There are many restaurants on the island. You can eat at the restaurant or order room service.</p>
+      </div>
+      <div class="island-todo-card">
+        <img src="images/pool-hero.jpg" alt="">
+        <h3>Spa</h3>
+        <p>There is a spa on the island. You can go there to relax and get a massage.</p>
+      </div>
+    </div>
+    <!-- <div class="backdrop">
+    </div> -->
   </section>
   <section class="room-select-section">
     <h2>Our rooms</h2>
@@ -87,6 +125,13 @@ session_start(
     <input type="submit">
   </form>
   <script>
+    //paralaax effect on ballon image
+    const ballon = document.querySelector('.ballon');
+
+    window.addEventListener('scroll', function() {
+      let value = window.scrollY;
+      ballon.style.bottom = value * 0.5 + 'px';
+    })
   </script>
 </body>
 

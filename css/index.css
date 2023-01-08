@@ -87,7 +87,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   border-radius: 5px;
-  border: 5px solid #f0f0f0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .room-card img {
@@ -96,4 +96,136 @@ body {
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.island-todo {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+}
+
+.island-todo-cards {
+  padding: 50px 0;
+  width: 100%;
+  /* max-width: 1200px;
+  min-width: 300px; */
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 3;
+}
+
+.island-todo-card {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.island-todo-card img {
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.island-todo-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.backdrop {
+  background: rgba(5, 255, 230, 0.58);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 50;
+  left: 50;
+  z-index: 1;
+}
+
+.island-info-section {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+}
+
+.island-info-section h2 {
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.island-info-section p {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  width: 400px;
+  text-align: left;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.island-info-section img {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+  filter: drop-shadow(2mm 4mm 0mm rgba(41, 108, 255, 0.8));
+}
+
+.island-info-content {
+  padding: 50px 0;
+  width: 100%;
+  /* max-width: 1200px;
+  min-width: 300px; */
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: 3;
+}
+
+.clouds {
+  position: absolute;
+  top: 50;
+  left: 50;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.ballon {
+  display: flex;
+}
+
+.ballon img:nth-of-type(2) {
+  filter: drop-shadow(2mm 4mm 0mm purple);
+  transform: rotate(-10deg);
+}
+
+.island-todo h2 {
+  font-size: 50px;
 }
