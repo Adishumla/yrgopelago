@@ -50,7 +50,8 @@ $booking = [
   'total_cost' => $_SESSION['totalcost'],
   'room_type' => $_SESSION['room_type'],
   'stars' => $hotel_info['stars'],
-  'features' => $features,
+  // 'features' => name $features and cost: $_SESSION['feature_cost]
+  'features' => ['name' =>  $features] + ['cost' => $_SESSION['feature_cost']],
   'additional_info' => $hotel_info['additional_info'],
 ];
 

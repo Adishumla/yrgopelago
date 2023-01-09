@@ -9,9 +9,18 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
+table:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+  transform: translateY(-5px);
+}
 table caption {
   font-size: 1.5em;
   margin: 0.5em 0 0.75em;
@@ -19,7 +28,8 @@ table caption {
 
 table tr {
   background-color: #fff;
-  border: 1px solid #000;
+  /*   border: 1px solid #000;
+ */
   padding: 0.35em;
 }
 

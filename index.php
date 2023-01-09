@@ -4,7 +4,7 @@ session_start(
     'cookie_lifetime' => 120,
   ]
 );
-
+include_once __DIR__ . '/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,56 +16,26 @@ session_start(
   <link rel="stylesheet" href="css/index.css">
   <title>form</title>
 </head>
-<!-- <style>
-  body {
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 100px;
-  }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  input {
-    margin: 10px;
-  }
-</style> -->
 
 <body>
+  <div class="ball"></div>
   <section class="hero">
-    <img src="images/desktop-hero.jpg" alt="">
+    <img src="images/baloon.jpg" alt="">
     <div class="hero-text">
       <h1>Welcome to Serendipity Island</h1>
     </div>
   </section>
-  <section class="island-info-section">
+  <!--   <section class="island-info-section">
     <h2>What is Serendipity Island?</h2>
     <div class="island-info-content">
       <p>Serendipity Island is a small island in the middle of the ocean. It is a very popular tourist destination. The island is famous for the hot air ballon phenomenon that happens every day at 21:00. The hot air ballons are very beautiful and you can see them from the island.</p>
       <div class="ballon">
-        <!-- <div class="clouds">
-                    <img src="images/cloud1.png" alt="">
-          <img src="images/cloud1.png" alt="">
-        </div> -->
         <img src="images/hot-airballon.png" alt="">
         <img src="images/hot-airballon2.png" alt="">
       </div>
-      <!-- cloud images that are animated -->
-
     </div>
-  </section>
-  <section class="island-todo">
+  </section> -->
+  <!-- <section class="island-todo">
     <h2>What to do on the island</h2>
     <div class="island-todo-cards">
       <div class="island-todo-card">
@@ -84,8 +54,21 @@ session_start(
         <p>There is a spa on the island. You can go there to relax and get a massage.</p>
       </div>
     </div>
-    <!-- <div class="backdrop">
-    </div> -->
+  </section> -->
+  <section class="parallax-container">
+    <h2>The beauty of Serendipity Island</h2>
+    <section class="img-container">
+      <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+        <img class="image" src="images/pizza.jpg" draggable="false" />
+        <img class="image" src="images/massage.jpg" draggable="false" />
+        <img class="image" src="images/cocktail.jpg" draggable="false" />
+        <img class="image" src="images/under-water.jpg" draggable="false" />
+        <img class="image" src="images/desktop-hero.jpg" draggable="false" />
+        <img class="image" src="images/maldives.jpg" draggable="false" />
+        <img class="image" src="images/maldives2.jpg" draggable="false" />
+        <img class="image" src="images/lake-town-hero.jpg" draggable="false" />
+      </div>
+    </section>
   </section>
   <section class="room-select-section">
     <h2>Our rooms</h2>
@@ -93,8 +76,8 @@ session_start(
       <div class="room-card">
         <img src="images/standard-room.jpg" alt="">
         <h3>luxury</h3>
-        <p>This is the room for you if you want to live in luxury.</p>
-        <p>price: 5 SEK</p>
+        <p>This is the room for you if you want to live a luxury life. This room has a sauna and a jacuzzi with a view of the ocean.</p>
+        <p>price: <?= $luxury_price = $db->query("SELECT price FROM prices WHERE name = 'luxury'")->fetchAll(PDO::FETCH_ASSOC)[0]['price'] ?> SEK</p>
         <a href="luxury.php">
           <button>luxury</button>
         </a>
@@ -102,8 +85,8 @@ session_start(
       <div class="room-card">
         <img src="images/luxury-room2.jpg" alt="">
         <h3>standard</h3>
-        <p>This is the room for you if you want to live a standard life.</p>
-        <p>price: 3 SEK</p>
+        <p>This is the room for you if you want to live a standard life. This room has a view of the ocean from its large balcony.</p>
+        <p>price: <?= $standard_price = $db->query("SELECT price FROM prices WHERE name = 'standard'")->fetchAll(PDO::FETCH_ASSOC)[0]['price'] ?> SEK</p>
         <a href="standard.php">
           <button>standard</button>
         </a>
@@ -111,8 +94,8 @@ session_start(
       <div class="room-card">
         <img src="images/outside-room.jpg" alt="">
         <h3>budget</h3>
-        <p>This is the room for you if you want to live on a budget.</p>
-        <p>price: 2 SEK</p>
+        <p>This is the room for you if you want to live on a budget life. This room has a view of the ocean because it is outside.</p>
+        <p>price: <?= $budget_price = $db->query("SELECT price FROM prices WHERE name = 'budget'")->fetchAll(PDO::FETCH_ASSOC)[0]['price'] ?> SEK</p>
         <a href="budget.php">
           <button>budget</button>
         </a>
@@ -125,13 +108,96 @@ session_start(
     <input type="submit">
   </form>
   <script>
-    //paralaax effect on ballon image
-    const ballon = document.querySelector('.ballon');
+    const ballon = document.querySelectorAll('.ballon img');
+    const track = document.getElementById("image-track");
 
+    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+
+    const handleOnUp = () => {
+      track.dataset.mouseDownAt = "0";
+      track.dataset.prevPercentage = track.dataset.percentage;
+    }
+
+    const handleOnMove = e => {
+      if (track.dataset.mouseDownAt === "0") return;
+
+      const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+        maxDelta = window.innerWidth / 2;
+
+      const percentage = (mouseDelta / maxDelta) * -100,
+        nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+
+      track.dataset.percentage = nextPercentage;
+
+      track.animate({
+        transform: `translate(${nextPercentage}%, -50%)`
+      }, {
+        duration: 1200,
+        fill: "forwards"
+      });
+
+      for (const image of track.getElementsByClassName("image")) {
+        image.animate({
+          objectPosition: `${100 + nextPercentage}% center`
+        }, {
+          duration: 1200,
+          fill: "forwards"
+        });
+      }
+    }
+
+    /* -- Had to add extra lines for touch events -- */
+
+    window.onmousedown = e => handleOnDown(e);
+
+    window.ontouchstart = e => handleOnDown(e.touches[0]);
+
+    window.onmouseup = e => handleOnUp(e);
+
+    window.ontouchend = e => handleOnUp(e.touches[0]);
+
+    window.onmousemove = e => handleOnMove(e);
+
+    window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+    const ball = document.querySelector('.ball');
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let ballX = 0;
+    let ballY = 0;
+
+    let speed = 0.1;
+
+    // Update ball position
+    function animate() {
+      //Determine distance between ball and mouse
+      let distX = mouseX - ballX;
+      let distY = mouseY - ballY;
+
+      // Find position of ball and some distance * speed
+      ballX = ballX + (distX * speed);
+      ballY = ballY + (distY * speed);
+
+      ball.style.left = ballX + "px";
+      ball.style.top = ballY + "px";
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Move ball with cursor
+    document.addEventListener("mousemove", function(event) {
+      mouseX = event.pageX;
+      mouseY = event.pageY;
+    });
+
+    // ball moves when user scrolls so it's not just static on the page
     window.addEventListener('scroll', function() {
-      let value = window.scrollY;
-      ballon.style.bottom = value * 0.5 + 'px';
-    })
+      ball.style.top = window.scrollY + 'px';
+    });
   </script>
 </body>
 

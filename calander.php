@@ -33,7 +33,7 @@ for ($i = 1; $i <= 31; $i++) {
 }
 
 echo '<div>';
-echo '<h1>january</h1>';
+/* echo '<h1>january</h1>'; */
 echo '<table>';
 /* echo '<tr>';
 echo '<th>mon</th>';

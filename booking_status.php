@@ -39,19 +39,26 @@ foreach ($prices as $key => $value) {
 //echo '<br>';
 $total_cost = ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1) * $_SESSION['price'];
 //add the 2 for every checkbox that is checked
+$feature_cost = 0;
 if ($_SESSION['massage'] == 1) {
   $total_cost += 2;
+  $feature_cost += 2;
 }
 if ($_SESSION['breakfast'] == 1) {
   $total_cost += 2;
+  $feature_cost += 2;
 }
 if ($_SESSION['butler'] == 1) {
   $total_cost += 2;
+  $feature_cost += 2;
 }
 $_SESSION['totalcost'] = $total_cost;
+$_SESSION['feature_cost'] = $feature_cost;
 // if the user booked 5 or more days, give a 10% discount
 if ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1 >= 5) {
   $_SESSION['totalcost'] = $_SESSION['totalcost'] * 0.9;
+  // save feature cost in a session variable
+  $_SESSION['feature_cost'] = $feature_cost * 0.9;
 }
 // check if start_date is less than end_date
 if (strtotime($_SESSION['start_date']) > strtotime($_SESSION['end_date'])) {
