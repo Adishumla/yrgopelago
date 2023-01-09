@@ -159,5 +159,4 @@ echo '<h1>budget</h1>';
 getTable($db, 'budget');
 ?>
 <section>
-
 </section>
