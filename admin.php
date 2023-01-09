@@ -18,10 +18,10 @@ $dotenv->load();
 if (isset($_POST['api_key'])) {
   if ($_POST['api_key'] == $_ENV['API_KEY']) {
   } else {
-    header('Location: index.php');
+    echo '<script>window.location.href ="admin.php";</script>';
   }
 } else {
-  header('Location: index.php');
+  echo '<script>window.location.href ="index.php";</script>';
 }
 
 // get all luxury table data from database

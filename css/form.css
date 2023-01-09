@@ -99,3 +99,24 @@ input[type='date'] {
   align-items: center;
   gap: 10px;
 }
+
+.img-section {
+}
+
+.img-text {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-around;
+  align-content: center;
+  margin: 100px;
+}
+
+.img-text img {
+  width: 500px;
+  height: auto;
+}
+
+.img-text p {
+  text-aling: center;
+}

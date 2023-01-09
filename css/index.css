@@ -116,6 +116,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   z-index: 3;
+  justify-content: center;
 }
 
 .island-todo-card {

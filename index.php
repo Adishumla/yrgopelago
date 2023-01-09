@@ -74,13 +74,13 @@ session_start(
         <p>There are many activities to do on the island. You can go on a boat trip, go to the spa or go to the gym.</p>
       </div>
       <div class="island-todo-card">
-        <img src="images/maldives.jpg" alt="">
+        <img src="images/pizza.jpg" alt="">
         <h3>Food</h3>
         <p>There are many restaurants on the island. You can eat at the restaurant or order room service.</p>
       </div>
       <div class="island-todo-card">
-        <img src="images/pool-hero.jpg" alt="">
-        <h3>Spa</h3>
+        <img src="images/massage.jpg" alt="">
+        <h3>Massage</h3>
         <p>There is a spa on the island. You can go there to relax and get a massage.</p>
       </div>
     </div>
@@ -100,19 +100,19 @@ session_start(
         </a>
       </div>
       <div class="room-card">
-        <img src="images/standard-room.jpg" alt="">
-        <h3>luxury</h3>
-        <p>This is the room for you if you want to live in luxury.</p>
-        <p>price: 5 SEK</p>
+        <img src="images/luxury-room2.jpg" alt="">
+        <h3>standard</h3>
+        <p>This is the room for you if you want to live a standard life.</p>
+        <p>price: 3 SEK</p>
         <a href="standard.php">
           <button>standard</button>
         </a>
       </div>
       <div class="room-card">
-        <img src="images/standard-room.jpg" alt="">
-        <h3>luxury</h3>
-        <p>This is the room for you if you want to live in luxury.</p>
-        <p>price: 5 SEK</p>
+        <img src="images/outside-room.jpg" alt="">
+        <h3>budget</h3>
+        <p>This is the room for you if you want to live on a budget.</p>
+        <p>price: 2 SEK</p>
         <a href="budget.php">
           <button>budget</button>
         </a>

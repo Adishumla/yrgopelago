@@ -1,7 +1,7 @@
 <?php
 session_start(
   [
-    'cookie_lifetime' => 120,
+    'cookie_lifetime' => 360,
   ]
 );
 
@@ -18,8 +18,13 @@ session_start(
 </head>
 
 <body>
-  <section>
+  <section class="img-section">
     <!-- room images -->
+    <div class="img-text">
+      <img src="images/standard-room.jpg" alt="">
+      <h1>Living in luxury</h1>
+    </div>
+
   </section>
   <section class="input-section">
     <section class="form-section">
