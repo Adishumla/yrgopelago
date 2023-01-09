@@ -8,6 +8,7 @@ use function PHPSTORM_META\type;
   ]
 ); */
 
+header('Content-Type: application/json');
 
 //get data from database
 $db = new PDO('sqlite:' . __DIR__ . '/database/identifier.sqlite');
@@ -54,5 +55,4 @@ $booking = [
 ];
 
 file_put_contents('booking.json', json_encode($booking, JSON_PRETTY_PRINT));
-header('Content-Type: application/json');
 echo json_encode($booking, JSON_PRETTY_PRINT);

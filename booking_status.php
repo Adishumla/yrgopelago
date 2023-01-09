@@ -36,7 +36,7 @@ foreach ($prices as $key => $value) {
   }
 }
 
-echo '<br>';
+//echo '<br>';
 $total_cost = ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1) * $_SESSION['price'];
 //add the 2 for every checkbox that is checked
 if ($_SESSION['massage'] == 1) {
