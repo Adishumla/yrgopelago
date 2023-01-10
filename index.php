@@ -65,8 +65,8 @@ include_once __DIR__ . '/functions.php';
     <h2>The beauty of Serendipity Island</h2>
     <section class="img-container">
       <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-        <img class="image" src="images/pizza.jpg" draggable="false" />
-        <img class="image" src="images/massage.jpg" draggable="false" />
+        <img class="image" src="images/baloon.jpg" draggable="false" />
+        <img class="image" src="images/pool-hero.jpg" draggable="false" />
         <img class="image" src="images/cocktail.jpg" draggable="false" />
         <img class="image" src="images/under-water.jpg" draggable="false" />
         <img class="image" src="images/desktop-hero.jpg" draggable="false" />
