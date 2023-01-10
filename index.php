@@ -203,7 +203,7 @@ include_once __DIR__ . '/functions.php';
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
       button.addEventListener('mouseover', () => {
-        ball.style.transform = 'scale(1.5)'
+        ball.style.transform = 'scale(2)'
         ball.style.transition = 'transform 0.5s ease-in-out';
         ball.style.transformOrigin = 'center';
       });
