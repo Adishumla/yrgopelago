@@ -31,12 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $error = [];
 
   if (isset($_POST['username'])) {
+    htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
     $data['username'] = $_POST['username'];
   } else {
     $error['username'] = 'Username is missing';
   }
 
   if (isset($_POST['transferCode'])) {
+    htmlspecialchars($_POST['transferCode'], ENT_QUOTES, 'UTF-8');
     $data['transferCode'] = $_POST['transferCode'];
   } else {
     $error['transferCode'] = 'TransferCode is missing';
@@ -71,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data['breakfast'] = 0;
   }
   // room is a string and can be any of the following values luxury, standard, budget
-  if (isset($_POST['room_type']) && ($_POST['room_type'] == 'luxury' || $_POST['room_type'] == 'standard' || $_POST['room_type'] == 'budget')) {
+  if (isset($_POST['room_type']) && ($_POST['room_type'] == 'luxury' || $_POST['room_type'] == 'standard' || $_POST['room_type'] == 'budget')) { // could also use in_array here pointing to db to make dynamic (NO TIME!)
     $data['room_type'] = $_POST['room_type'];
   } else {
     $error['room_type'] = 'Room type is missing';

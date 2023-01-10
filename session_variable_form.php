@@ -11,7 +11,9 @@ $room_type = $_SESSION['room_type'];
 
 $_SESSION['start_date'] = $_POST['start_date'];
 $_SESSION['end_date'] = $_POST['end_date'];
+htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
 $_SESSION['username'] = $_POST['username'];
+htmlspecialchars($_POST['transferCode'], ENT_QUOTES, 'UTF-8');
 $_SESSION['transferCode'] = $_POST['transferCode'];
 getDates($db, $room_type);
 $start_dates = getDates($db, $room_type)[0];
@@ -29,6 +31,7 @@ echo $_POST['butler']; */
 echo checkbox('breakfast');
 echo checkbox('massage');
 echo checkbox('butler');
+
 
 $booked_days = array();
 // loop through the start_dates and end_dates
