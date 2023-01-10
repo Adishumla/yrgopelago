@@ -179,7 +179,6 @@ input[type='date'] {
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
   mix-blend-mode: difference;
   z-index: 999;
   pointer-events: none;
@@ -205,14 +204,18 @@ input[type='date'] {
 .ball__inner svg {
   width: 100%;
   height: 100%;
+  fill: rgba(255, 255, 255, 0.3);
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 5px;
 }
 
 .ball__inner--active {
+  mix-blend-mode: normal;
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.39);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4.7px);
-  -webkit-backdrop-filter: blur(4.7px);
-  border: 1px solid rgba(255, 255, 255, 0.66);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 0.5px solid rgba(255, 255, 255, 0.23);
 }

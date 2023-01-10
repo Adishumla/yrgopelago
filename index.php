@@ -20,8 +20,8 @@ include_once __DIR__ . '/functions.php';
 <body>
   <div class="ball">
     <div class="ball__inner">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
       </svg>
     </div>
   </div>
@@ -175,26 +175,39 @@ include_once __DIR__ . '/functions.php';
     let ballX = 0;
     let ballY = 0;
 
-    let speed = 0.1;
+    let speed = 0.5;
 
-    // Update ball position
+    //get mouse position
+    function mousePosition(e) {
+      mouseX = e.pageX;
+      mouseY = e.pageY;
+    }
+
+    //get ball position
+    function ballPosition() {
+      ballX = ball.offsetLeft;
+      ballY = ball.offsetTop;
+    }
+
     function animate() {
-      //Determine distance between ball and mouse
-      let distX = mouseX - ballX;
-      let distY = mouseY - ballY;
-
-      // Find position of ball and some distance * speed
-      ballX = ballX + (distX * speed);
-      ballY = ballY + (distY * speed);
+      let distX = mouseX - (ballX + ball.offsetWidth / 2);
+      let distY = mouseY - (ballY + ball.offsetHeight / 2);
+      let dampening = 0.1;
+      ballX += distX * (speed * dampening);
+      ballY += distY * (speed * dampening);
+      if (Math.abs(distX) < 1 && Math.abs(distY) < 1) {
+        ballX = mouseX - ball.offsetWidth / 2;
+        ballY = mouseY - ball.offsetHeight / 2;
+      }
 
       ball.style.left = ballX + "px";
       ball.style.top = ballY + "px";
 
       requestAnimationFrame(animate);
     }
+
     animate();
 
-    // Move ball with cursor
     document.addEventListener("mousemove", function(event) {
       mouseX = event.pageX;
       mouseY = event.pageY;
@@ -203,7 +216,7 @@ include_once __DIR__ . '/functions.php';
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
       button.addEventListener('mouseover', () => {
-        ball.style.transform = 'scale(2)'
+        ball.style.transform = 'scale(3)'
         ball.style.transition = 'transform 0.5s ease-in-out';
         ball.style.transformOrigin = 'center';
       });
@@ -214,19 +227,18 @@ include_once __DIR__ . '/functions.php';
 
     const images = document.querySelectorAll('.image');
     const ball__inner = document.querySelector('.ball__inner');
-    images.forEach(image => {
-      image.addEventListener('mouseover', () => {
-        ball.style.transform = 'scale(1.5)'
-        ball.style.transition = 'transform 0.5s ease-in-out';
-        ball.style.transformOrigin = 'center';
-        ball__inner.style.display = 'block';
-        ball__inner.style.mixBlendMode = 'normal';
-
-      });
-      image.addEventListener('mouseout', () => {
-        ball.style.transform = 'scale(1)'
-        ball__inner.style.display = 'none';
-      });
+    track.addEventListener('mouseover', () => {
+      ball.style.transform = 'scale(3)'
+      ball.style.transition = 'transform 0.5s ease-in-out';
+      ball.style.transformOrigin = 'center';
+      ball__inner.style.display = 'block';
+      ball__inner.style.mixBlendMode = 'normal';
+      ball.classList.add('ball__inner--active');
+    });
+    track.addEventListener('mouseout', () => {
+      ball.style.transform = 'scale(1)'
+      ball__inner.style.display = 'none';
+      ball.classList.remove('ball__inner--active');
     });
   </script>
 </body>

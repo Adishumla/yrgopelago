@@ -26,9 +26,7 @@ session_start(
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
         <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path d="M152 64H296V24C296 10.75 306.7 0 320 0C333.3 0 344 10.75 344 24V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H104V24C104 10.75 114.7 0 128 0C141.3 0 152 10.75 152 24V64zM48 448C48 456.8 55.16 464 64 464H384C392.8 464 400 456.8 400 448V192H48V448z" />
-      </svg>
+
     </div>
   </div>
   <!-- <section class="img-section">
@@ -138,17 +136,20 @@ session_start(
     let ballX = 0;
     let ballY = 0;
 
-    let speed = 0.1;
+    let speed = 0.7;
 
     // Update ball position
     function animate() {
-      //Determine distance between ball and mouse
-      let distX = mouseX - ballX;
-      let distY = mouseY - ballY;
+      let distX = mouseX - (ballX + ball.offsetWidth / 2);
+      let distY = mouseY - (ballY + ball.offsetHeight / 2);
+      let dampening = 0.1;
+      ballX += distX * (speed * dampening);
+      ballY += distY * (speed * dampening);
 
-      // Find position of ball and some distance * speed
-      ballX = ballX + (distX * speed);
-      ballY = ballY + (distY * speed);
+      if (Math.abs(distX) < 1 && Math.abs(distY) < 1) {
+        ballX = mouseX - ball.offsetWidth / 2;
+        ballY = mouseY - ball.offsetHeight / 2;
+      }
 
       ball.style.left = ballX + "px";
       ball.style.top = ballY + "px";
@@ -157,7 +158,6 @@ session_start(
     }
     animate();
     const svg = document.querySelector('svg');
-    // Move ball with cursor
     document.addEventListener("mousemove", function(event) {
       mouseX = event.pageX;
       mouseY = event.pageY;
@@ -169,10 +169,12 @@ session_start(
           ball.style.transform = "scale(3)";
           ball.style.transition = 'transform 0.5s ease-in-out';
           ball__inner.style.display = 'block';
+          ball.classList.add('ball__inner--active');
 
         } else {
           ball.style.transform = "scale(1)";
           ball__inner.style.display = 'none';
+          ball.classList.remove('ball__inner--active');
         }
       });
     });
@@ -182,6 +184,7 @@ session_start(
           ball.style.transform = "scale(1)";
           ball.style.transition = 'transform 0.5s ease-in-out';
           ball__inner.style.display = 'none';
+          ball.classList.remove('ball__inner--active');
 
         } else {
           ball.style.transform = "scale(1)";
