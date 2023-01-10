@@ -194,9 +194,16 @@ include_once __DIR__ . '/functions.php';
       mouseY = event.pageY;
     });
 
-    // ball moves when user scrolls so it's not just static on the page
-    window.addEventListener('scroll', function() {
-      ball.style.top = window.scrollY + 'px';
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('mouseover', () => {
+        ball.style.transform = 'scale(1.5)'
+        ball.style.transition = 'transform 0.5s ease-in-out';
+        ball.style.transformOrigin = 'center';
+      });
+      button.addEventListener('mouseout', () => {
+        ball.style.transform = 'scale(1)'
+      });
     });
   </script>
 </body>

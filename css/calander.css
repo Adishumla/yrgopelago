@@ -19,7 +19,7 @@ table {
 table:hover {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   transform: scale(1.05);
-  transform: translateY(-5px);
+  transform: translateY(5px);
 }
 table caption {
   font-size: 1.5em;
