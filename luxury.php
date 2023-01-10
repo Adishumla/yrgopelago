@@ -21,6 +21,16 @@ session_start(
 </head>
 
 <body>
+  <div class="ball">
+    <div class="ball__inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M152 64H296V24C296 10.75 306.7 0 320 0C333.3 0 344 10.75 344 24V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H104V24C104 10.75 114.7 0 128 0C141.3 0 152 10.75 152 24V64zM48 448C48 456.8 55.16 464 64 464H384C392.8 464 400 456.8 400 448V192H48V448z" />
+      </svg>
+    </div>
+  </div>
   <!-- <section class="img-section">
   <div class="img-text">
     <img src="images/standard-room.jpg" alt="">
@@ -44,25 +54,23 @@ session_start(
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="images/luxury-room2.jpg" alt="Los Angeles" style="width:100%;">
+            <img src="images/luxury-room2.jpg" alt="" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="images/lake-town-hero.jpg" alt="Chicago" style="width:100%;">
+            <img src="images/lake-town-hero.jpg" alt="" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="images/outside-room.jpg" alt="New york" style="width:100%;">
+            <img src="images/outside-room.jpg" alt="" style="width:100%;">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
+        <a id='left' class="left carousel-control" href="#myCarousel" data-slide="prev">
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
+        <a id='right' class="right carousel-control" href="#myCarousel" data-slide="next">
           <span class="sr-only">Next</span>
         </a>
       </div>
@@ -120,6 +128,103 @@ session_start(
 
   ?>
   <script>
+    const ball = document.querySelector('.ball');
+    const ball__inner = document.querySelector('.ball__inner');
+    const a = document.querySelectorAll('a');
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let ballX = 0;
+    let ballY = 0;
+
+    let speed = 0.1;
+
+    // Update ball position
+    function animate() {
+      //Determine distance between ball and mouse
+      let distX = mouseX - ballX;
+      let distY = mouseY - ballY;
+
+      // Find position of ball and some distance * speed
+      ballX = ballX + (distX * speed);
+      ballY = ballY + (distY * speed);
+
+      ball.style.left = ballX + "px";
+      ball.style.top = ballY + "px";
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+    const svg = document.querySelector('svg');
+    // Move ball with cursor
+    document.addEventListener("mousemove", function(event) {
+      mouseX = event.pageX;
+      mouseY = event.pageY;
+    });
+
+    a.forEach((a) => {
+      a.addEventListener('mouseover', function(event) {
+        if (event.target.matches('a')) {
+          ball.style.transform = "scale(3)";
+          ball.style.transition = 'transform 0.5s ease-in-out';
+          ball__inner.style.display = 'block';
+
+        } else {
+          ball.style.transform = "scale(1)";
+          ball__inner.style.display = 'none';
+        }
+      });
+    });
+    a.forEach((a) => {
+      a.addEventListener('mouseout', function(event) {
+        if (event.target.matches('a')) {
+          ball.style.transform = "scale(1)";
+          ball.style.transition = 'transform 0.5s ease-in-out';
+          ball__inner.style.display = 'none';
+
+        } else {
+          ball.style.transform = "scale(1)";
+          ball__inner.style.display = 'none';
+        }
+      });
+    });
+    document.addEventListener("mouseover", function(event) {
+      if (event.target.matches('#left')) {
+        ball__inner.style.transform = "rotate(0deg)";
+
+        ball__inner.style.transition = 'transform 0.5s ease-in-out';
+      } else if (event.target.matches('#right')) {
+        ball__inner.style.transform = "rotate(180deg)";
+
+      }
+    });
+    const input = document.querySelectorAll('input');
+    input.forEach((input) => {
+      input.addEventListener('mouseover', function(event) {
+        if (event.target.matches('input')) {
+          ball.style.transform = "scale(2.5)";
+          ball.style.transition = 'transform 0.5s ease-in-out';
+
+        }
+      });
+    });
+    input.forEach((input) => {
+      input.addEventListener('mouseout', function(event) {
+        if (event.target.matches('input')) {
+          ball.style.transform = "scale(1)";
+          ball.style.transition = 'transform 0.5s ease-in-out';
+
+        }
+      });
+    });
+    const calendar = document.querySelector('table');
+    calendar.addEventListener('mouseover', function(event) {
+      if (event.target.matches('table')) {
+        ball.style.transform = "scale(3)";
+        ball.style.transition = 'transform 0.5s ease-in-out';
+      }
+    });
   </script>
 </body>
 

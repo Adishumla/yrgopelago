@@ -42,6 +42,8 @@ if ($_SESSION['massage'] == 1) {
   array_push($features, 'massage');
 }
 
+$features = implode(', ', $features);
+
 $booking = [
   'island' => $hotel_info['island'],
   'hotel' => $hotel_info['hotel'],
@@ -51,7 +53,7 @@ $booking = [
   'room_type' => $_SESSION['room_type'],
   'stars' => $hotel_info['stars'],
   // 'features' => name $features and cost: $_SESSION['feature_cost]
-  'features' => ['name' =>  $features] + ['cost' => $_SESSION['feature_cost']],
+  'features' => ['name' =>  $features, 'cost' => $_SESSION['feature_cost']],
   'additional_info' => $hotel_info['additional_info'],
 ];
 

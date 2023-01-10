@@ -8,7 +8,7 @@ div {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
+  /* width: 100%; */
   transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   border-radius: 15px;
@@ -30,12 +30,11 @@ table tr {
   background-color: #fff;
   /*   border: 1px solid #000;
  */
-  padding: 0.35em;
 }
 
 table th,
 table td {
-  padding: 0.625em;
+  padding: 0.8em;
   text-align: center;
 }
 
