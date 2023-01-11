@@ -1,10 +1,10 @@
 <?php
 session_start(
   [
-    'cookie_lifetime' => 120,
+    'cookie_lifetime' => 1800,
   ]
 );
-include_once __DIR__ . '/functions.php';
+include_once __DIR__ . '/functions.php'; // always use __DIR__ when including files in PHP to avoid problems with relative paths
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,7 @@ include_once __DIR__ . '/functions.php';
     <h2>Our rooms</h2>
     <div class="room-select">
       <div class="room-card">
-        <img src="images/standard-room.jpg" alt="">
+        <img src="images/luxury-room-1.jpg" alt="">
         <h3>luxury</h3>
         <p>This is the room for you if you want to live a luxury life. This room has a sauna and a jacuzzi with a view of the ocean.</p>
         <p>price: <?= $luxury_price = $db->query("SELECT price FROM prices WHERE name = 'luxury'")->fetchAll(PDO::FETCH_ASSOC)[0]['price'] ?> SEK</p>
@@ -67,7 +67,7 @@ include_once __DIR__ . '/functions.php';
         </a>
       </div>
       <div class="room-card">
-        <img src="images/luxury-room2.jpg" alt="">
+        <img src="images/standard-room-1.jpg" alt="">
         <h3>standard</h3>
         <p>This is the room for you if you want to live a standard life. This room has a view of the ocean from its large balcony.</p>
         <p>price: <?= $standard_price = $db->query("SELECT price FROM prices WHERE name = 'standard'")->fetchAll(PDO::FETCH_ASSOC)[0]['price'] ?> SEK</p>
@@ -78,7 +78,7 @@ include_once __DIR__ . '/functions.php';
       <div class="room-card">
         <img src="images/outside-room.jpg" alt="">
         <h3>budget</h3>
-        <p>This is the room for you if you want to live on a budget life. This room has a view of the ocean because it is outside.</p>
+        <p>This is the room for you if you want to live the budget life. This room has a view of the ocean because it is outside.</p>
         <p>price: <?= $budget_price = $db->query("SELECT price FROM prices WHERE name = 'budget'")->fetchAll(PDO::FETCH_ASSOC)[0]['price'] ?> SEK</p>
         <a href="budget.php">
           <button>budget</button>
@@ -86,16 +86,18 @@ include_once __DIR__ . '/functions.php';
       </div>
     </div>
   </section>
-  <form action="admin.php" method="post">
-    <label for="api_key">api_key</label>
-    <input name="api_key" type="text">
-    <input type="submit">
-  </form>
+  <footer>
+    <form action="admin.php" method="post">
+      <label for="api_key">api_key</label>
+      <input name="api_key" type="text">
+      <input type="submit">
+    </form>
+  </footer>
   <script>
     const ballon = document.querySelectorAll('.ballon img');
     const track = document.getElementById("image-track");
 
-    // Store the x-coordinate of the mouse down event in the track's data attribute
+    // save the x-coordinate of the mouse down event in the track's data attribute
     const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
     // Reset the data attribute when mouse is released
@@ -104,41 +106,42 @@ include_once __DIR__ . '/functions.php';
       track.dataset.prevPercentage = track.dataset.percentage;
     }
 
-    // Move the track on mouse move event
+    // Move the track on mouse move event if the mouse is down
     const handleOnMove = e => {
       if (track.dataset.mouseDownAt === "0") return;
 
-      // Calculate the mouse delta, the difference in x-coordinate from mouse down to move event
+      // Calculate the mouse delta, the difference in x-coordinate from mouse down to move event (delta means the change in value)
       const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-        maxDelta = window.innerWidth / 2;
+        maxDelta = window.innerWidth / 2; // The max delta is half the window width
 
-      // Calculate the percentage of movement, based on the mouse delta and the max delta
+      // Calculate the percentage of movement, based on the mouse delta and the max delta (percentage means the ratio of a number to another number)
       const percentage = (mouseDelta / maxDelta) * -100,
         nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -65);
+        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -65); // Constrain the percentage to be between 0 and -65
+      // (-65 so that the last image is not cut off and the user can't drag the track further to the left)
 
       track.dataset.percentage = nextPercentage;
 
       // Animate the movement of the track
-      track.animate({
-        transform: `translate(${nextPercentage}%, -50%)`
+      track.animate({ // animate the transform property of the track (FOR TRACK)
+        transform: `translate(${nextPercentage}%, -50%)` // translate the track by the percentage calculated above
       }, {
-        duration: 1500,
-        fill: "forwards"
+        duration: 1500, // duration of the animation
+        fill: "forwards" // keep the animation state after it finishes (so that the track stays in the new position)
       });
 
-      // Animate the movement of all images within the track
+      // Animate the movement of all images within the track (FOR IMAGES)
       for (const image of track.getElementsByClassName("image")) {
-        image.animate({
-          objectPosition: `${100 + nextPercentage}% center`
+        image.animate({ // animate the objectPosition property of the image
+          objectPosition: `${100 + nextPercentage}% center` // move the image by the percentage calculated above
         }, {
-          duration: 1200,
-          fill: "forwards"
+          duration: 1200, // duration of the animation (shorter than the track animation so that the images move faster than the track, creating the parallax effect)
+          fill: "forwards" // keep the animation state after it finishes (so that the image stays in the new position)
         });
       }
     }
 
-    // Add event listeners for mouse and touch events
+    // Add event listeners for mouse and touch events (touch events are for mobile devices)
     window.onmousedown = e => handleOnDown(e);
     window.ontouchstart = e => handleOnDown(e.touches[0]);
     window.onmouseup = e => handleOnUp(e);
@@ -148,42 +151,43 @@ include_once __DIR__ . '/functions.php';
 
 
     const ball = document.querySelector('.ball');
-
+    // set the initial position of the ball and the mouse
     let mouseX = 0;
     let mouseY = 0;
 
     let ballX = 0;
     let ballY = 0;
-
+    // set the speed of the ball movement (the higher the number, the faster the ball will move)
     let speed = 1;
 
-    //get mouse position
+    //get mouse position on mouse move
     function mousePosition(e) {
       mouseX = e.clientX;
       mouseY = e.clientY;
     }
 
-    //get ball position
+    //get ball position on ball move
     function ballPosition() {
       ballX = ball.offsetLeft;
       ballY = ball.offsetTop;
     }
 
+    // move the ball
     function animate() {
-      let distX = mouseX - (ballX + ball.offsetWidth / 2);
-      let distY = mouseY - (ballY + ball.offsetHeight / 2);
-      let dampening = 0.1;
-      ballX += distX * (speed * dampening);
-      ballY += distY * (speed * dampening);
-      if (Math.abs(distX) < 1 && Math.abs(distY) < 1) {
-        ballX = mouseX - ball.offsetWidth / 2;
-        ballY = mouseY - ball.offsetHeight / 2;
+      let distX = mouseX - (ballX + ball.offsetWidth / 2); // get the distance between the mouse and the ball on the x-axis
+      let distY = mouseY - (ballY + ball.offsetHeight / 2); // get the distance between the mouse and the ball on the y-axis
+      let dampening = 0.1; // dampening smooths the movement of the ball
+      ballX += distX * (speed * dampening); // move the ball on the x-axis
+      ballY += distY * (speed * dampening); // move the ball on the y-axis
+      if (Math.abs(distX) < 1 && Math.abs(distY) < 1) { // if the ball is close to the mouse, set the ball position to the mouse position
+        ballX = mouseX - ball.offsetWidth / 2; //x-axis position of the ball
+        ballY = mouseY - ball.offsetHeight / 2; //y-axis position of the ball
       }
 
-      ball.style.left = ballX + "px";
-      ball.style.top = ballY + "px";
+      ball.style.left = ballX + "px"; // set the ball position on the x-axis
+      ball.style.top = ballY + "px"; // set the ball position on the y-axis
 
-      requestAnimationFrame(animate);
+      requestAnimationFrame(animate); // call the animate function again when the browser is ready to draw the next frame
     }
 
     animate();
@@ -194,20 +198,20 @@ include_once __DIR__ . '/functions.php';
     });
 
     const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
+    buttons.forEach(button => { // loop through all buttons and add event listeners to them that will change the ball size on hover
       button.addEventListener('mouseover', () => {
         ball.style.transform = 'scale(3)'
         ball.style.transition = 'transform 0.5s ease-in-out';
         ball.style.transformOrigin = 'center';
       });
-      button.addEventListener('mouseout', () => {
+      button.addEventListener('mouseout', () => { // change the ball size back to normal when the mouse leaves the button
         ball.style.transform = 'scale(1)'
       });
     });
 
     const images = document.querySelectorAll('.image');
     const ball__inner = document.querySelector('.ball__inner');
-    track.addEventListener('mouseover', () => {
+    track.addEventListener('mouseover', () => { // change the ball size and display the inner ball when the mouse enters the track
       ball.style.transform = 'scale(3)'
       ball.style.transition = 'transform 0.5s ease-in-out';
       ball.style.transformOrigin = 'center';
@@ -227,7 +231,7 @@ include_once __DIR__ . '/functions.php';
     const thirdWord = document.querySelector('.third-word');
 
     function changeColor() {
-      if (window.scrollY > infoContainer.offsetTop - 100) {
+      if (window.scrollY > infoContainer.offsetTop - 100) { // change the color of the text and background when the user scrolls down to the info container
         infoContainer.style.backgroundColor = 'black';
         infoContainer.style.color = 'white';
         firstWord.classList.add('first-animation');
@@ -242,7 +246,7 @@ include_once __DIR__ . '/functions.php';
 
     const roomSection = document.querySelector('.room-select-section');
 
-    function changeColorBack() {
+    function changeColorBack() { // change the color of the text and background when the user scrolls down to the room section
       if (window.scrollY > roomSection.offsetTop - 100) {
         infoContainer.style.backgroundColor = 'white';
         infoContainer.style.color = 'black';

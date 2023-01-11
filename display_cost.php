@@ -11,27 +11,32 @@ $prices = $db->query("SELECT * FROM prices")->fetchAll(PDO::FETCH_ASSOC);
   const start = document.querySelector('input[name="start date"]');
   const end = document.querySelector('input[name="end date"]');
   const room_type = document.querySelector('#room_type').innerHTML;
-
   const room_types = [{
       type: 'luxury',
-      price: <?= $prices[0]['price'] ?>
+      price: <?= $prices[0]['price'] ?>,
+      discount: <?= $prices[0]['discount'] ?>
     },
     {
       type: 'standard',
-      price: <?= $prices[1]['price'] ?>
+      price: <?= $prices[1]['price'] ?>,
+      discount: <?= $prices[1]['discount'] ?>
     },
     {
       type: 'budget',
-      price: <?= $prices[2]['price'] ?>
+      price: <?= $prices[2]['price'] ?>,
+      discount: <?= $prices[2]['discount'] ?>
     },
   ];
-
   // find the price of the selected room type
   const findPrice = (room_type) => {
     const room = room_types.find((room) => room.type === room_type);
     return room.price;
   };
-  // 1 event listener for all inputs and update the cost accordingly. cost per day is 2 and 2 for each extra service selected, if the user selects more than 5 days the cost is reduced by 10% to the total cost
+  const findDiscount = (room_type) => {
+    const room = room_types.find((room) => room.type === room_type);
+    return (-room.discount + 100) / 100;
+  };
+  cost.innerHTML = '$' + 0;
   const inputs = document.querySelectorAll('input');
   inputs.forEach((input) => {
     input.addEventListener('change', () => {
@@ -39,6 +44,7 @@ $prices = $db->query("SELECT * FROM prices")->fetchAll(PDO::FETCH_ASSOC);
       const enddate = new Date(end.value);
       const days = (enddate - startdate) / (1000 * 60 * 60 * 24) + 1;
       let totalcost = days * findPrice(room_type);
+      let discount = findDiscount(room_type);
       if (butler.checked) {
         totalcost += 2;
       }
@@ -49,12 +55,14 @@ $prices = $db->query("SELECT * FROM prices")->fetchAll(PDO::FETCH_ASSOC);
         totalcost += 2;
       }
       if (days >= 5) {
-        totalcost = totalcost * 0.9;
+        totalcost = totalcost * discount;
       }
       cost.innerText = totalcost;
-      if (days < 1 || startdate > enddate || isNaN(days) || isNaN(totalcost)) {
+      if (days < 1 || startdate > enddate || isNaN(days) || isNaN(totalcost) || totalcost < 0) {
         cost.innerText = 0;
       }
+      // add $ to totalcost
+      cost.innerText = '$' + cost.innerText;
     });
   });
 </script>

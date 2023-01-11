@@ -7,10 +7,6 @@ declare(strict_types=1);
   ]
 ); */
 
-
-// if checkbox is checked, set session variable to true else false, as a function of isset
-
-
 use GuzzleHttp\Client;
 
 include_once __DIR__ . '/vendor/autoload.php';

@@ -1,9 +1,10 @@
 <?php
 session_start(
   [
-    'cookie_lifetime' => 360,
+    'cookie_lifetime' => 1800,
   ]
 );
+
 
 include __DIR__ . '/functions.php';
 

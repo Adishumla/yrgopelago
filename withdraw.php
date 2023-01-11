@@ -4,7 +4,7 @@
 declare(strict_types=1);
 session_start(
   [
-    'cookie_lifetime' => 120,
+    'cookie_lifetime' => 1800,
   ]
 );
 

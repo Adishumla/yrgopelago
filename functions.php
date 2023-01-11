@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 //function that gets the start_date and end_date from the database
 /* function getDates($db, $room_type)
 {

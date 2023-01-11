@@ -500,3 +500,7 @@ img:hover + .ball {
     transform: translateX(0);
   }
 }
+
+footer form {
+  display: none;
+}

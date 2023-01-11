@@ -8,7 +8,7 @@
 
 session_start(
   [
-    'cookie_lifetime' => 1360,
+    'cookie_lifetime' => 1800,
   ]
 );
 

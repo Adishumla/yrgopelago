@@ -1,9 +1,12 @@
 <?php
 session_start(
   [
-    'cookie_lifetime' => 360,
+    'cookie_lifetime' => 1800,
   ]
 );
+include __DIR__ . '/functions.php';
+$room_type = 'budget';
+$discount = $db->query("SELECT discount FROM prices WHERE name = '$room_type'")->fetchColumn();
 
 ?>
 <!DOCTYPE html>
@@ -51,15 +54,15 @@ session_start(
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="images/luxury-room2.jpg" alt="" style="width:100%;">
-          </div>
-
-          <div class="item">
-            <img src="images/lake-town-hero.jpg" alt="" style="width:100%;">
-          </div>
-
-          <div class="item">
             <img src="images/outside-room.jpg" alt="" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="images/budget-room-2.jpg" alt="" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="images/budget-room-3.jpg" alt="" style="width:100%;">
           </div>
         </div>
 
@@ -77,6 +80,7 @@ session_start(
       <section class="form-section">
         <h1 id="room_type">budget</h1>
         <form action="session_variable_form.php" method="post">
+          <p><?= $discount ?>% of if you book 5 days or more</p>
           <div class="form-text-section">
             <label for="username">Username
               <input class="form-text-input" name="username" type="text">
@@ -107,7 +111,7 @@ session_start(
           <label for="totalcost">Totalcost
             <p id="cost"></p>
           </label>
-          <?php $_SESSION['room_type'] = 'Budget'; ?>
+          <?php $_SESSION['room_type'] = 'budget'; ?>
           <input class="submit-button" id="no-cursor" type="submit">
         </form>
       </section>

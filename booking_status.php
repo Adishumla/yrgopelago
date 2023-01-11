@@ -1,7 +1,7 @@
 <?php
 session_start(
   [
-    'cookie_lifetime' => 360,
+    'cookie_lifetime' => 1800,
   ]
 );
 /* echo 'TEST'; */
@@ -22,7 +22,14 @@ for ($i = 0; $i < count($start_dates); $i++) {
 // save booked days in a session variable array
 $_SESSION['booked_days'] = $booked_days;
 
+// save the discount in a session variable
+$_SESSION['discount'] = $db->query('SELECT discount FROM prices WHERE name = "' . $_SESSION['room_type'] . '"')->fetchColumn();
+// convert the discount to a decimal
+$_SESSION['discount'] = (-$_SESSION['discount'] + 100) / 100;
+
 // array of room_types and their prices
+
+//fetch prices from db
 $prices = [
   'standard' => $db->query('SELECT price FROM prices WHERE name = "standard"')->fetchColumn(),
   'budget' => $db->query('SELECT price FROM prices WHERE name = "budget"')->fetchColumn(),
@@ -56,9 +63,12 @@ $_SESSION['totalcost'] = $total_cost;
 $_SESSION['feature_cost'] = $feature_cost;
 // if the user booked 5 or more days, give a 10% discount
 if ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1 >= 5) {
-  $_SESSION['totalcost'] = $_SESSION['totalcost'] * 0.9;
+  // save total cost in a session variable
+  $_SESSION['totalcost'] = $_SESSION['totalcost'] * $_SESSION['discount'];
   // save feature cost in a session variable
-  $_SESSION['feature_cost'] = $feature_cost * 0.9;
+  $_SESSION['feature_cost'] = $feature_cost * $_SESSION['discount'];
+  //save number of days in a session variable
+
 }
 // check if start_date is less than end_date
 if (strtotime($_SESSION['start_date']) > strtotime($_SESSION['end_date'])) {
