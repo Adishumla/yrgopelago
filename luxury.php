@@ -124,7 +124,7 @@ $discount = $db->query("SELECT discount FROM prices WHERE name = '$room_type'")-
 
   </section>
   <?php
-  include 'display_cost.php';
+  include __DIR__ . '/display_cost.php';
 
   ?>
   <script>

@@ -49,11 +49,11 @@ $booking = [
   'hotel' => $hotel_info['hotel'],
   'arrival_date' => $_SESSION['start_date'],
   'departure_date' => $_SESSION['end_date'],
-  'total_cost' => round($_SESSION['totalcost'], 3),
+  'total_cost' => sprintf('%.2f', $_SESSION['totalcost']),
   'room_type' => $_SESSION['room_type'],
   'stars' => $hotel_info['stars'],
   // 'features' => name $features and cost: $_SESSION['feature_cost]
-  'features' => ['name' =>  $features, 'cost' => $_SESSION['feature_cost']],
+  'features' => ['name' =>  $features, 'cost' => sprintf('%.2f', $_SESSION['feature_cost'])],
   'additional_info' => $hotel_info['additional_info'],
 ];
 

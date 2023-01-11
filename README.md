@@ -1,16 +1,19 @@
 WHY NOT A GIF HERE? TO SET THE MODE.
 
-# Island name
+# Serendipty Island
 
-Some text about your lovely island
+Serendipity Island is a wonderful island in the middle of the ocean. It's a place where you can relax and enjoy the sun, the sea and the sand. It's a place where you can forget about your problems and just enjoy the moment. This is a place where you can be yourself and be happy.
 
-# Hotel name
+# Island Oasis Inn
 
 Why not add some info about the hotel of your dreams?
 
+Island Oasis Inn is a 5 star hotel located on the most wonderful island. Every room in this hotel has access to the best view of this beautiful island.
+
 # Instructions
 
-If your project requires some installation or similar, please inform your user 'bout it. For instance, if you want a more decent indentation of your .php files, you could edit [.editorconfig]('/.editorconfig').
+1. Clone this repo
+2. no installations are required.
 
 # Code review
 
