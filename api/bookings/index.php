@@ -90,7 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['massage'] = $data['massage'];
     $_SESSION['breakfast'] = $data['breakfast'];
     $_SESSION['room_type'] = $data['room_type'];
-    echo json_encode($data);
+    /* echo */
+    json_encode($data);
     // with js redirect to booking_status.php
     include_once __DIR__ . '/../../booking_status.php';
     /* header('Location: api.php'); */
