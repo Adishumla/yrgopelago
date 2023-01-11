@@ -95,25 +95,31 @@ include_once __DIR__ . '/functions.php';
     const ballon = document.querySelectorAll('.ballon img');
     const track = document.getElementById("image-track");
 
+    // Store the x-coordinate of the mouse down event in the track's data attribute
     const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
+    // Reset the data attribute when mouse is released
     const handleOnUp = () => {
       track.dataset.mouseDownAt = "0";
       track.dataset.prevPercentage = track.dataset.percentage;
     }
 
+    // Move the track on mouse move event
     const handleOnMove = e => {
       if (track.dataset.mouseDownAt === "0") return;
 
+      // Calculate the mouse delta, the difference in x-coordinate from mouse down to move event
       const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
         maxDelta = window.innerWidth / 2;
 
+      // Calculate the percentage of movement, based on the mouse delta and the max delta
       const percentage = (mouseDelta / maxDelta) * -100,
         nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
         nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -65);
 
       track.dataset.percentage = nextPercentage;
 
+      // Animate the movement of the track
       track.animate({
         transform: `translate(${nextPercentage}%, -50%)`
       }, {
@@ -121,6 +127,7 @@ include_once __DIR__ . '/functions.php';
         fill: "forwards"
       });
 
+      // Animate the movement of all images within the track
       for (const image of track.getElementsByClassName("image")) {
         image.animate({
           objectPosition: `${100 + nextPercentage}% center`
@@ -131,19 +138,14 @@ include_once __DIR__ . '/functions.php';
       }
     }
 
-    /* -- Had to add extra lines for touch events -- */
-
+    // Add event listeners for mouse and touch events
     window.onmousedown = e => handleOnDown(e);
-
     window.ontouchstart = e => handleOnDown(e.touches[0]);
-
     window.onmouseup = e => handleOnUp(e);
-
     window.ontouchend = e => handleOnUp(e.touches[0]);
-
     window.onmousemove = e => handleOnMove(e);
-
     window.ontouchmove = e => handleOnMove(e.touches[0]);
+
 
     const ball = document.querySelector('.ball');
 
