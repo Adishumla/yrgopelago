@@ -28,39 +28,10 @@ include_once __DIR__ . '/functions.php';
   <section class="hero">
     <img src="images/baloon.jpg" alt="">
     <div class="hero-text">
-      <h1>Welcome to Serendipity Island</h1>
+      <div class="word1">Welcome to</div>
+      <div class="word2">Serendipity Island</div>
     </div>
   </section>
-  <!--   <section class="island-info-section">
-    <h2>What is Serendipity Island?</h2>
-    <div class="island-info-content">
-      <p>Serendipity Island is a small island in the middle of the ocean. It is a very popular tourist destination. The island is famous for the hot air ballon phenomenon that happens every day at 21:00. The hot air ballons are very beautiful and you can see them from the island.</p>
-      <div class="ballon">
-        <img src="images/hot-airballon.png" alt="">
-        <img src="images/hot-airballon2.png" alt="">
-      </div>
-    </div>
-  </section> -->
-  <!-- <section class="island-todo">
-    <h2>What to do on the island</h2>
-    <div class="island-todo-cards">
-      <div class="island-todo-card">
-        <img src="images/baloon.jpg" alt="">
-        <h3>Activities</h3>
-        <p>There are many activities to do on the island. You can go on a boat trip, go to the spa or go to the gym.</p>
-      </div>
-      <div class="island-todo-card">
-        <img src="images/pizza.jpg" alt="">
-        <h3>Food</h3>
-        <p>There are many restaurants on the island. You can eat at the restaurant or order room service.</p>
-      </div>
-      <div class="island-todo-card">
-        <img src="images/massage.jpg" alt="">
-        <h3>Massage</h3>
-        <p>There is a spa on the island. You can go there to relax and get a massage.</p>
-      </div>
-    </div>
-  </section> -->
   <section class="parallax-container">
     <h2>The beauty of Serendipity Island</h2>
     <section class="img-container">
@@ -75,6 +46,13 @@ include_once __DIR__ . '/functions.php';
         <img class="image" src="images/lake-town-hero.jpg" draggable="false" />
       </div>
     </section>
+  </section>
+  <section class="info-container">
+    <span class="">
+      <h2 class="first-word">Serendipity</h2>
+      <h2 class="second-word">Island</h2>
+    </span>
+    <p class="third-word"> Serendipity Island is a small island in the middle of the ocean. It is a very popular tourist destination. The island is famous for the hot air ballon phenomenon that happens every day at 21:00. The hot air ballons are very beautiful and you can see them from all our rooms.</p>
   </section>
   <section class="room-select-section">
     <h2>Our rooms</h2>
@@ -132,14 +110,14 @@ include_once __DIR__ . '/functions.php';
 
       const percentage = (mouseDelta / maxDelta) * -100,
         nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -65);
 
       track.dataset.percentage = nextPercentage;
 
       track.animate({
         transform: `translate(${nextPercentage}%, -50%)`
       }, {
-        duration: 1200,
+        duration: 1500,
         fill: "forwards"
       });
 
@@ -175,12 +153,12 @@ include_once __DIR__ . '/functions.php';
     let ballX = 0;
     let ballY = 0;
 
-    let speed = 0.5;
+    let speed = 1;
 
     //get mouse position
     function mousePosition(e) {
-      mouseX = e.pageX;
-      mouseY = e.pageY;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     }
 
     //get ball position
@@ -240,6 +218,35 @@ include_once __DIR__ . '/functions.php';
       ball__inner.style.display = 'none';
       ball.classList.remove('ball__inner--active');
     });
+
+    const infoContainer = document.querySelector('.info-container');
+    const firstWord = document.querySelector('.first-word');
+    const secondWord = document.querySelector('.second-word');
+    const thirdWord = document.querySelector('.third-word');
+
+    function changeColor() {
+      if (window.scrollY > infoContainer.offsetTop - 100) {
+        infoContainer.style.backgroundColor = 'black';
+        infoContainer.style.color = 'white';
+        firstWord.classList.add('first-animation');
+        secondWord.classList.add('second-animation');
+        thirdWord.classList.add('third-animation');
+      } else {
+        document.body.style.backgroundColor = 'white';
+        document.body.style.color = 'black';
+      }
+    }
+    window.addEventListener('scroll', changeColor);
+
+    const roomSection = document.querySelector('.room-select-section');
+
+    function changeColorBack() {
+      if (window.scrollY > roomSection.offsetTop - 100) {
+        infoContainer.style.backgroundColor = 'white';
+        infoContainer.style.color = 'black';
+      }
+    }
+    window.addEventListener('scroll', changeColorBack);
   </script>
 </body>
 

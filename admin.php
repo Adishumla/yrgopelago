@@ -1,6 +1,10 @@
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <?php
 
-declare(strict_types=1);
+/* declare(strict_types=1); */
 
 session_start(
   [
@@ -47,7 +51,6 @@ echo '<h3>Money made: ' . $money_made . '</h3>';
 // get hotel_info from database
 $hotel_info = $db->query("SELECT * FROM hotel_info")->fetchAll(PDO::FETCH_ASSOC);
 
-// input form for hotel_info (name, address, phone, email, description) that send query to database to update hotel_info table
 foreach ($hotel_info as $info) {
   echo '<form action="admin.php" method="post">';
   echo '<input type="text" name="island" value="' . $info['island'] . '">';
@@ -58,19 +61,15 @@ foreach ($hotel_info as $info) {
   echo '</form>';
 }
 
+
 // update hotel_info table
 if (isset($_POST['submit_info'])) {
   $db->query("UPDATE hotel_info SET island = '$_POST[island]', hotel = '$_POST[hotel]', stars = '$_POST[stars]', additional_info = '$_POST[additional_info]' WHERE id = '1'");
   echo '<script>window.location.href = "admin.php";</script>';
 }
 
-// get all prices from database
 $prices = getPrices($db, 'prices');
-/* echo '<pre>';
-print_r($prices);
-echo '</pre>';
- */
-// input form for each room type (name, price, discount) that send query to database to update prices table
+
 foreach ($prices as $price) {
   echo '<form action="admin.php" method="post">';
   echo '<input type="text" name="name" value="' . $price['name'] . '">';
