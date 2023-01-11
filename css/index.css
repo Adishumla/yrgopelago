@@ -1,6 +1,9 @@
 @font-face {
   font-family: 'casa-regular';
-  src: url('../font/casa-regular.otf');
+  font-style: normal;
+  font-weight: normal;
+  src: url('../font/Casa-Regular.otf') format('otf');
+  src: local('Casa Regular'), url('../font/Casa-Regular.woff') format('woff');
 }
 @font-face {
   font-family: 'dahlia-regular';

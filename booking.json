@@ -1,14 +1,14 @@
 {
     "island": "Serendipity Island",
     "hotel": "Island Oasis Inn",
-    "arrival_date": "2023-01-10",
-    "departure_date": "2023-01-12",
-    "total_cost": 17,
+    "arrival_date": "2023-01-13",
+    "departure_date": "2023-01-18",
+    "total_cost": 25.5,
     "room_type": "luxury",
     "stars": 5,
     "features": {
-        "name": "massage",
-        "cost": 2
+        "name": "",
+        "cost": 0
     },
     "additional_info": "https:\/\/www.youtube.com\/watch?v=6x-JVXkd8SQ"
 }
