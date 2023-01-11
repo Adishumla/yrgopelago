@@ -1,4 +1,4 @@
-WHY NOT A GIF HERE? TO SET THE MODE.
+<img src="gif/crazy.gif" width="100%">
 
 # Serendipty Island
 
