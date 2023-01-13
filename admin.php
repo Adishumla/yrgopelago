@@ -4,14 +4,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <?php
 
-/* declare(strict_types=1); */
-
-/* session_start(
-  [
-    'cookie_lifetime' => 1800,
-  ]
-); */
-
 use Dotenv\Dotenv;
 
 require_once __DIR__ . '/vendor/autoload.php';

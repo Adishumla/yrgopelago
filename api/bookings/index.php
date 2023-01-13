@@ -14,19 +14,6 @@ header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // get data from post
 
-  /* if (isset($_POST['username']) && isset($_POST['transferCode']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['room_type'])) {
-    $_SESSION['username'] = $_POST['username'];
-    $_SESSION['transferCode'] = $_POST['transferCode'];
-    $_SESSION['start_date'] = $_POST['start_date'];
-    $_SESSION['end_date'] = $_POST['end_date'];
-    $_SESSION['butler'] = $_POST['butler'];
-    $_SESSION['massage'] = $_POST['massage'];
-    $_SESSION['breakfast'] = $_POST['breakfast'];
-    $_SESSION['room_type'] = $_POST['room_type'];
-  } else {
-    echo "Missing username or transferCode";
-  } */
-
   $data = [];
   $error = [];
 
@@ -90,10 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['massage'] = $data['massage'];
     $_SESSION['breakfast'] = $data['breakfast'];
     $_SESSION['room_type'] = $data['room_type'];
-    /* echo */
     json_encode($data);
-    // with js redirect to booking_status.php
     include_once __DIR__ . '/../../booking_status.php';
-    /* header('Location: api.php'); */
   }
 }

@@ -24,11 +24,6 @@ checkbox('breakfast');
 checkbox('butler');
 checkbox('massage');
 
-/* echo $_POST['breakfast'];
-echo '<br>';
-echo $_POST['massage'];
-echo '<br>';
-echo $_POST['butler']; */
 echo checkbox('breakfast');
 echo checkbox('massage');
 echo checkbox('butler');
@@ -60,14 +55,3 @@ foreach ($prices as $key => $value) {
   }
 }
 echo '<script>window.location.href = "booking_status.php";</script>';
-/* $total_cost = ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1) * $_SESSION['price'];
-$_SESSION['totalcost'] = $total_cost; */
-/* if (isset($_SESSION['breakfast']) && isset($_SESSION['breakfast']) == 1) {
-  $total_cost += 2;
-}
-if (isset($_SESSION['massage']) && isset($_SESSION['massage']) == 1) {
-  $total_cost += 2;
-}
-if (isset($_SESSION['butler']) && isset($_SESSION['butler']) == 1) {
-  $total_cost += 2;
-} */

@@ -32,13 +32,6 @@ $discount = $db->query("SELECT discount FROM prices WHERE name = '$room_type'")-
 
     </div>
   </div>
-  <!-- <section class="img-section">
-  <div class="img-text">
-    <img src="images/standard-room.jpg" alt="">
-    <h1>Living in luxury</h1>
-  </div>
-
-  </section> -->
 
   <section class="input-section">
 

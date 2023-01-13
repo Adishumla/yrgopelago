@@ -4,7 +4,6 @@ session_start(
     'cookie_lifetime' => 1800,
   ]
 );
-/* echo 'TEST'; */
 include __DIR__ . '/functions.php';
 $room_type = $_SESSION['room_type'];
 getDates($db, $room_type);
@@ -43,7 +42,6 @@ foreach ($prices as $key => $value) {
   }
 }
 
-//echo '<br>';
 $total_cost = ((strtotime($_SESSION['end_date']) - strtotime($_SESSION['start_date'])) / 86400 + 1) * $_SESSION['price'];
 //add the 2 for every checkbox that is checked
 $feature_cost = 0;
@@ -80,7 +78,5 @@ if (in_array($_SESSION['start_date'], $_SESSION['booked_days']) || in_array($_SE
   $_SESSION['error'] = 'The room is not available for the selected dates';
   echo '<script> setTimeout(function(){window.location.href = "' . $_SESSION['room_type'] . '.php";}, 3000);</script>';
 } else {
-  /* echo 'this room is available';
-  echo '<script> setTimeout(function(){window.location.href = "postTransferCode.php";}, 5000);</script>'; */
   require_once 'postTransferCode.php';
 }

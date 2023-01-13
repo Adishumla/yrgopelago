@@ -2,12 +2,6 @@
 
 use function PHPSTORM_META\type;
 
-/* session_start(
-  [
-    'cookie_lifetime' => 240,
-  ]
-); */
-
 header('Content-Type: application/json');
 
 //get data from database
@@ -19,17 +13,29 @@ $last_room_id = $db->query("SELECT id FROM $_SESSION[room_type] ORDER BY id DESC
 //get all info from hotel_info table
 $hotel_info = $db->query("SELECT * FROM hotel_info")->fetch(PDO::FETCH_ASSOC); //island, hotel, stars, additional_info
 
-/* echo $last_room_id = $last_room_id + 1;
-echo gettype($last_room_id);
-echo '<br>';
-echo $last_feature_id = (int) $last_feature_id + 1;
-echo gettype($last_feature_id); */
 //insert data into database
-$db->query("INSERT INTO $_SESSION[room_type] (name, start_date, end_date, feature_id) VALUES ('$_SESSION[username]', '$_SESSION[start_date]', '$_SESSION[end_date]', $last_feature_id + 1)");
-$db->query("INSERT INTO feature (name, room_id, butler, breakfast, massage, room_type) VALUES ('$_SESSION[username]', $last_room_id + 1, '$_SESSION[butler]', '$_SESSION[breakfast]', '$_SESSION[massage]', '$_SESSION[room_type]')");
-$db->query("INSERT INTO booking (name, amount, room_type, room_id) VALUES ('$_SESSION[username]', '$_SESSION[totalcost]', '$_SESSION[room_type]', $last_room_id + 1)");
+$query = "INSERT INTO " . $_SESSION['room_type'] . " (name, start_date, end_date, feature_id) VALUES (?, ?, ?, ?)";
+$stmt = $db->prepare($query);
+$stmt->bindValue(1, $_SESSION['username'], PDO::PARAM_STR);
+$stmt->bindValue(2, $_SESSION['start_date'], PDO::PARAM_STR);
+$stmt->bindValue(3, $_SESSION['end_date'], PDO::PARAM_STR);
+$stmt->bindValue(4, $last_feature_id + 1, PDO::PARAM_INT);
+$stmt->execute();
+$stmt = $db->prepare("INSERT INTO feature (name, room_id, butler, breakfast, massage, room_type) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bindValue(1, $_SESSION['username'], PDO::PARAM_STR);
+$stmt->bindValue(2, $last_room_id + 1, PDO::PARAM_INT);
+$stmt->bindValue(3, $_SESSION['butler'], PDO::PARAM_INT);
+$stmt->bindValue(4, $_SESSION['breakfast'], PDO::PARAM_INT);
+$stmt->bindValue(5, $_SESSION['massage'], PDO::PARAM_INT);
+$stmt->bindValue(6, $_SESSION['room_type'], PDO::PARAM_STR);
+$stmt->execute();
+$stmt = $db->prepare("INSERT INTO booking (name, amount, room_type, room_id) VALUES (?, ?, ?, ?)");
+$stmt->bindValue(1, $_SESSION['username'], PDO::PARAM_STR);
+$stmt->bindValue(2, $_SESSION['totalcost'], PDO::PARAM_INT);
+$stmt->bindValue(3, $_SESSION['room_type'], PDO::PARAM_STR);
+$stmt->bindValue(4, $last_room_id + 1, PDO::PARAM_INT);
+$stmt->execute();
 echo 'booking successful!';
-//echo '<script>setTimeout(function(){window.location.href = "' . $_SESSION['room_type'] . '.php";}, 4000);</script>';
 
 $features = [];
 if ($_SESSION['butler'] == 1) {
@@ -52,7 +58,6 @@ $booking = [
   'total_cost' => sprintf('%.2f', $_SESSION['totalcost']),
   'room_type' => $_SESSION['room_type'],
   'stars' => $hotel_info['stars'],
-  // 'features' => name $features and cost: $_SESSION['feature_cost]
   'features' => ['name' =>  $features, 'cost' => sprintf('%.2f', $_SESSION['feature_cost'])],
   'additional_info' => $hotel_info['additional_info'],
 ];

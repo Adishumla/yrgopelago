@@ -15,10 +15,6 @@ include_once __DIR__ . '/vendor/autoload.php';
 $url = 'https://www.yrgopelago.se/';
 $url_withdraw = 'https://www.yrgopelago.se/centralbank/withdraw';
 
-/* if (!isset($_SESSION['transferCode'])) {
-    $_SESSION['transferCode'] = $_POST['transferCode'];
-} */
-/* $totalcost = $_SESSION['totalcost']; */
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['api_key'] = $_POST['api_key'];
 $_SESSION['amount'] = $_POST['amount'];

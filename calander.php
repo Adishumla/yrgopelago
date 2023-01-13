@@ -7,10 +7,7 @@ getDates($db, $room_type);
 if (isset($_SESSION['error'])) {
   echo $_SESSION['error'];
 }
-// only vardump start_dates from function getDates($db, $room_type)
-/* var_dump(getDates($db, 'standard')[0]);
-  // only vardump end_dates from function getDates($db, $room_type)
-  var_dump(getDates($db, 'standard')[1]); */
+
 $start_dates = getDates($db, $room_type)[0];
 $end_dates = getDates($db, $room_type)[1];
 // booked days are the days between the start_date and end_date
@@ -33,17 +30,8 @@ for ($i = 1; $i <= 31; $i++) {
 }
 
 echo '<div>';
-/* echo '<h1>january</h1>'; */
 echo '<table>';
-/* echo '<tr>';
-echo '<th>mon</th>';
-echo '<th>tue</th>';
-echo '<th>wed</th>';
-echo '<th>thu</th>';
-echo '<th>fri</th>';
-echo '<th>sat</th>';
-echo '<th>sun</th>';
-echo '</tr>'; */
+
 echo '<tr>';
 for ($i = 0; $i < count($january); $i++) {
   if (in_array($january[$i], $booked_days)) {

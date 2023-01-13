@@ -35,14 +35,8 @@ if (isset($data['error'])) {
 } else {
   $error = null;
 }
-/* var_dump($error);
-var_dump($error);
-var_dump($amount);
-var_dump($totalcost);
-echo $res->getStatusCode(); */
+
 if ($res->getStatusCode() == 200 && !isset($error) && $amount >= $totalcost) {
-  /* echo "Transfer successful"; */
-  /* echo '<script> setTimeout(function(){window.location.href = "deposit.php";}, 5000);</script>'; */
   require_once 'deposit.php';
 } else {
   echo "Transfer failed";

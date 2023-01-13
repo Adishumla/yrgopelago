@@ -1,9 +1,5 @@
 <?php
 
-// make api call to https://garali.se/api_test/
-// get response
-// show response
-
 use GuzzleHttp\Client;
 
 include_once '../../vendor/autoload.php';
