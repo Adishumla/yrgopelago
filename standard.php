@@ -6,7 +6,11 @@ session_start(
 );
 include __DIR__ . '/functions.php';
 $room_type = 'standard';
-$discount = $db->query("SELECT discount FROM prices WHERE name = '$room_type'")->fetchColumn();
+$stmt = $db->prepare("SELECT discount FROM prices WHERE name = ?");
+$stmt->bindValue(1, $room_type, PDO::PARAM_STR);
+$stmt->execute();
+$discount = $stmt->fetchColumn();
+
 
 ?>
 <!DOCTYPE html>

@@ -22,7 +22,10 @@ for ($i = 0; $i < count($start_dates); $i++) {
 $_SESSION['booked_days'] = $booked_days;
 
 // save the discount in a session variable
-$_SESSION['discount'] = $db->query('SELECT discount FROM prices WHERE name = "' . $_SESSION['room_type'] . '"')->fetchColumn();
+$stmt = $db->prepare("SELECT discount FROM prices WHERE name = ?");
+$stmt->bindValue(1, $_SESSION['room_type'], PDO::PARAM_STR);
+$stmt->execute();
+$_SESSION['discount'] = $stmt->fetchColumn();
 // convert the discount to a decimal
 $_SESSION['discount'] = (-$_SESSION['discount'] + 100) / 100;
 

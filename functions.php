@@ -7,9 +7,17 @@ $db = new PDO('sqlite:' . __DIR__ . '/database/identifier.sqlite');
 function getDates($db, $room_type)
 {
   //save all the start_dates in an array
-  $start_dates = $db->query("SELECT start_date FROM $room_type ORDER BY id ASC")->fetchAll(PDO::FETCH_COLUMN);
+  $query = "SELECT start_date FROM " . $room_type . " ORDER BY id ASC";
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $start_dates = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
   //save all the end_dates in an array
-  $end_dates = $db->query("SELECT end_date FROM $room_type ORDER BY id ASC")->fetchAll(PDO::FETCH_COLUMN);
+  $query = "SELECT end_date FROM " . $room_type . " ORDER BY id ASC";
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $end_dates = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
   return [$start_dates, $end_dates];
 }
 

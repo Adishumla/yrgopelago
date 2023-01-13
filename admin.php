@@ -32,7 +32,12 @@ $luxury_feature_id = $db->query("SELECT feature_id FROM luxury")->fetchAll(PDO::
 // function to get data from prices table (name, price, discount)
 function getPrices($db, $room_type)
 {
-  $prices = $db->query("SELECT name, price, discount FROM $room_type")->fetchAll(PDO::FETCH_ASSOC);
+  $query = "SELECT name, price, discount FROM " . $room_type;
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $prices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
   return $prices;
 }
 $money_made = $db->query("SELECT amount FROM booking")->fetchAll(PDO::FETCH_ASSOC);
@@ -56,7 +61,14 @@ foreach ($hotel_info as $info) {
 
 // update hotel_info table
 if (isset($_POST['submit_info'])) {
-  $db->query("UPDATE hotel_info SET island = '$_POST[island]', hotel = '$_POST[hotel]', stars = '$_POST[stars]', additional_info = '$_POST[additional_info]' WHERE id = '1'");
+  $query = "UPDATE hotel_info SET island = ?, hotel = ?, stars = ?, additional_info = ? WHERE id = 1";
+  $stmt = $db->prepare($query);
+  $stmt->bindValue(1, $_POST['island'], PDO::PARAM_STR);
+  $stmt->bindValue(2, $_POST['hotel'], PDO::PARAM_STR);
+  $stmt->bindValue(3, $_POST['stars'], PDO::PARAM_INT);
+  $stmt->bindValue(4, $_POST['additional_info'], PDO::PARAM_STR);
+  $stmt->execute();
+
   echo '<script>window.location.href = "admin.php";</script>';
 }
 
@@ -73,7 +85,13 @@ foreach ($prices as $price) {
 
 // update prices table
 if (isset($_POST['submit'])) {
-  $db->query("UPDATE prices SET name = '$_POST[name]', price = '$_POST[price]', discount = '$_POST[discount]' WHERE name = '$_POST[name]'");
+  $query = "UPDATE prices SET name = ?, price = ?, discount = ? WHERE name = ?";
+  $stmt = $db->prepare($query);
+  $stmt->bindValue(1, $_POST['name'], PDO::PARAM_STR);
+  $stmt->bindValue(2, $_POST['price'], PDO::PARAM_INT);
+  $stmt->bindValue(3, $_POST['discount'], PDO::PARAM_INT);
+  $stmt->bindValue(4, $_POST['name'], PDO::PARAM_STR);
+  $stmt->execute();
   echo '<script>window.location.href = "admin.php";</script>';
 }
 
@@ -91,7 +109,13 @@ foreach ($feature_prices as $feature_price) {
 
 // update feature_prices table
 if (isset($_POST['submit_feature_prices'])) {
-  $db->query("UPDATE feature_prices SET name = '$_POST[name]', price = '$_POST[price]' WHERE name = '$_POST[name]'");
+  $query = "UPDATE feature_prices SET name = ?, price = ? WHERE name = ?";
+  $stmt = $db->prepare($query);
+  $stmt->bindValue(1, $_POST['name'], PDO::PARAM_STR);
+  $stmt->bindValue(2, $_POST['price'], PDO::PARAM_INT);
+  $stmt->bindValue(3, $_POST['name'], PDO::PARAM_STR);
+  $stmt->execute();
+
   echo '<script>window.location.href = "admin.php";</script>';
 }
 
@@ -112,7 +136,10 @@ getCalander($db, 'budget');
 
 function getTable($db, $room_type)
 {
-  $table = $db->query("SELECT * FROM $room_type")->fetchAll(PDO::FETCH_ASSOC);
+  $query = "SELECT * FROM " . $room_type;
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $table = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $feature = $db->query("SELECT * FROM feature")->fetchAll(PDO::FETCH_ASSOC);
   echo '<table>';
   echo '<tr>';
