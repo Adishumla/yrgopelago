@@ -1,5 +1,5 @@
 <?php
-
+//test commit
 declare(strict_types=1);
 $db = new PDO('sqlite:' . __DIR__ . '/database/identifier.sqlite');
 //These three lines adds all the values of 0-1 in each row in the tables and returns the total amount
