@@ -1,0 +1,213 @@
+[
+  {
+    "island": "Eldoon Isle",
+    "hotel": "Itsakon Hotel",
+    "arrival_date": "2023-01-1",
+    "departure_date": "2023-01-2",
+    "total_cost": "22",
+    "stars": 4,
+    "features": [
+      {
+        "name": "Megafridge",
+        "cost": "2"
+      },
+      {
+        "name": "Afternoon Breakfast",
+        "cost": "2"
+      },
+      {
+        "name": "Midnight Lunch",
+        "cost": "2"
+      },
+      {
+        "name": "Soy Dinner",
+        "cost": "2"
+      }
+    ],
+    "addtional_info": "Thanks for staying at Itsakon Hotel"
+  },
+
+  {
+    "island": "The Yellow Duck Island",
+    "hotel": "The Yellow Duck",
+    "arrival_date": "2023-01-13",
+    "departure_date": "2023-01-15",
+    "total_cost": "4",
+    "stars": "1",
+    "addtional_info": "Thank you for staying at the Yellow Duck!"
+  },
+  {
+    "island": "Ilha das mil pragas",
+    "hotel": "Terminal Hoteleiro",
+    "Your room choice": "Oh yes, baby!",
+    "arrival_date": "2023-01-29",
+    "departure_date": "2023-01-31",
+    "total_cost": 10,
+    "stars": 2,
+    "features": [{ "name": "Priest", "cost": "2" }],
+    "additional_info": "We are very much looking forward to your stay here. And remember, if you survive this visit to Ilha das mil pragas, you can survive anything!"
+  },
+  {
+    "island": "Eldoon Isle",
+    "hotel": "Itsakon Hotel",
+    "arrival_date": "2023-01-1",
+    "departure_date": "2023-01-31",
+    "total_cost": "71.25",
+    "stars": 4,
+    "features": [
+      {
+        "name": "Megafridge",
+        "cost": "2"
+      },
+      {
+        "name": "Afternoon Breakfast",
+        "cost": "2"
+      },
+      {
+        "name": "Midnight Lunch",
+        "cost": "2"
+      },
+      {
+        "name": "Soy Dinner",
+        "cost": "2"
+      },
+      {
+        "name": "Challenge Spa",
+        "cost": "1"
+      },
+      {
+        "name": "Boiling Pool",
+        "cost": "1"
+      },
+      {
+        "name": "Cold Sauna",
+        "cost": "1"
+      },
+      {
+        "name": "Guided pogostick tour",
+        "cost": "1"
+      },
+      {
+        "name": "Rent Bike",
+        "cost": "0.5"
+      },
+      {
+        "name": "Rent Car",
+        "cost": "0.5"
+      },
+      {
+        "name": "Trampass",
+        "cost": "0.5"
+      },
+      {
+        "name": "Buscard",
+        "cost": "0.5"
+      },
+      {
+        "name": "Trainticket",
+        "cost": "0.5"
+      },
+      {
+        "name": "Bungyjumping",
+        "cost": "0.5"
+      },
+      {
+        "name": "Cliff Diving",
+        "cost": "0.25"
+      },
+      {
+        "name": "Wingsuit",
+        "cost": "0.25"
+      },
+      {
+        "name": "Parapente",
+        "cost": "0.25"
+      },
+      {
+        "name": "Parachute",
+        "cost": "0.25"
+      },
+      {
+        "name": "Morning Yoga",
+        "cost": "0.25"
+      },
+      {
+        "name": "Afternoon Tea",
+        "cost": "0.25"
+      },
+      {
+        "name": "Second Breakfast",
+        "cost": "0.25"
+      },
+      {
+        "name": "Gym Access",
+        "cost": "0.25"
+      },
+      {
+        "name": "PT",
+        "cost": "0.25"
+      },
+      {
+        "name": "Athletics Arena",
+        "cost": "0.25"
+      },
+      {
+        "name": "Tennis Court",
+        "cost": "0.25"
+      },
+      {
+        "name": "Escape Room",
+        "cost": "0.25"
+      },
+      {
+        "name": "Break in room",
+        "cost": "0.25"
+      },
+      {
+        "name": "Cookie",
+        "cost": "0.25"
+      }
+    ],
+    "addtional_info": "Thanks for staying at Itsakon Hotel"
+  },
+  {
+    "island": "Point Nemo",
+    "hotel": "The Good Morrow",
+    "arrival_date": "2023-01-19",
+    "departure_date": "2023-01-20",
+    "total_cost": "18",
+    "stars": 5,
+    "features": [
+      {
+        "name": "The Hotel Song Music Video",
+        "cost": 15
+      }
+    ],
+    "additional_info": "Very good. Enjoy your stay. But not too much, you might never leave. This is your secret link to the amazing music video: https://youtu.be/8KLkbiTu07o"
+  },
+
+  {
+    "island": "Pelagon",
+    "hotel": "Moster Dagnys",
+    "arrival_date": "2023-01-12",
+    "departure_date": "2023-01-14",
+    "total_cost": 8,
+    "stars": "1",
+    "addtional_info": "Thank you for making the right choice by staying at Moster Dagnys. We hope you will enjoy your stay."
+  },
+  {
+    "island": "Isle of Sgàil",
+    "hotel": "The Burnwood Estate",
+    "arrival_date": "2023-01-07",
+    "departure_date": "2023-01-09",
+    "total_cost": 12,
+    "stars": "3",
+    "features": [
+      {
+        "name": "snacks",
+        "cost": 3
+      }
+    ],
+    "additional_info": "Welcome to the The Burnwood Estate, we hope you enjoy your stay!"
+  }
+]
