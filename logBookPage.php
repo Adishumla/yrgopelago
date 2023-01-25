@@ -13,7 +13,6 @@ $mostUsedFeature = max($butlerFeature, $breakfastFeature, $massageFeature);
 //I wanted to do the following two lines in one line but had a problem where i only got one of the values instead of the two, therefore i did two separate lines
 $vipAmount = implode($db->query("SELECT amount FROM booking ORDER BY amount DESC LIMIT 1")->fetchAll(PDO::FETCH_COLUMN));
 $vipName = implode($db->query("SELECT name FROM booking ORDER BY amount DESC LIMIT 1")->fetchAll(PDO::FETCH_COLUMN));
-
 $totalRevenue = $db->query("SELECT amount FROM booking")->fetchAll(PDO::FETCH_COLUMN);
 //The count basically counts how many bookings there were
 $totalBookings = count($totalRevenue);
@@ -116,7 +115,7 @@ $revenuePerBooking = number_format($totalRevenue / $totalBookings, 2, ',', '');
       if (!buttonClicked) {
         buttonClicked = true;
 
-        //create the factbox and place it inside the gridSection ss
+        //create the factbox and place it inside the gridSection
         let factbox = document.createElement("div");
         factbox.setAttribute("class", "factBox");
         factbox.innerHTML = `
