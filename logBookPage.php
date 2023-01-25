@@ -116,7 +116,7 @@ $revenuePerBooking = number_format($totalRevenue / $totalBookings, 2, ',', '');
       if (!buttonClicked) {
         buttonClicked = true;
 
-        //create the factbox and place it inside the gridSection
+        //create the factbox and place it inside the gridSection ss
         let factbox = document.createElement("div");
         factbox.setAttribute("class", "factBox");
         factbox.innerHTML = `
